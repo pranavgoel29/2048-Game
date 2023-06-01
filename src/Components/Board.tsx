@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import cloneDeep from "lodash.clonedeep";
+import { useEvent } from "../utils/useEvent";
 
 const BoardWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
@@ -55,21 +56,36 @@ const Board = () => {
     // console.table(newGrid);
     addNumber(newGrid);
     console.log("run 1");
-    
+
     addNumber(newGrid);
     console.log("run 2");
-    console.table(newGrid);
+    // console.table(newGrid);
 
     setGrid(newGrid);
+
+    console.log(swipe([2, 2, 0, 4]));
   };
 
-  function getRandomItem(arr) {
+  // Key Pressed, lisening to a key being pressed and making a move accordingly.
+  const keyPressed = (e) => {
+    let newGrid = cloneDeep(grid);
+    if (e.key == " ") {
+      for (let i = 0; i < gridSize; i++) {
+        newGrid[i] = swipe(newGrid[i]);
+      }
+      console.log(newGrid);
+      addNumber(newGrid);
+      setGrid(newGrid);
+    }
+  };
+
+  const getRandomItem = (arr) => {
     // get random index value
     const randomIndex = Math.floor(Math.random() * arr.length);
     // get random item
     const item = arr[randomIndex];
     return item;
-  }
+  };
 
   // - add number -  add a new item to the grid
   const addNumber = (newGrid) => {
@@ -95,12 +111,24 @@ const Board = () => {
   };
 
   // - Swipes/moves - screenLeft, right, up, down
+  const swipe = (row: any[]) => {
+    // keep everything in order which is not a zero.
+    let arr = row.filter((val) => val);
+    let missing = 4 - arr.length;
+    let zeros = Array(missing).fill(0);
+    arr = arr.concat(zeros);
+
+    return arr;
+  };
+
   // - Reset and Won state
 
   useEffect(() => {
     console.log("Initialize");
     initialize();
   }, []);
+
+  useEvent("keydown", keyPressed);
 
   return (
     <BoardWrapper>
