@@ -55,12 +55,12 @@ const Board = () => {
     // console.table(newGrid);
     addNumber(newGrid);
     console.log("run 1");
-    console.table(newGrid);
+    
     addNumber(newGrid);
     console.log("run 2");
     console.table(newGrid);
 
-    setGrid(newGrid)
+    setGrid(newGrid);
   };
 
   function getRandomItem(arr) {
