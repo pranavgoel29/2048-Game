@@ -39,6 +39,15 @@ I am trying to document how I progressed with the whole game development, attach
 
 ![Initial state during developement](./screenshots/initial_state_developement.png)
 
+
+<b>Generating 2D array just from Grid-Size to make it dynamic.</b>
+&nbsp;
+
+
+<blockquote><b><i>Adding Operation in one-direction, combined with swipe.</i></b></blockquote>
+&nbsp;
+<img src="https://raw.githubusercontent.com/pranavgoel29/2048-game/main/screenshots/Adding_operation.gif" alt="Adding Operation" width="100%" height="100%" loop=infinite>
+
 <br>
 
 ## 🐛Bug Reporting

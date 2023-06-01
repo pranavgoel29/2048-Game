@@ -41,7 +41,7 @@ const Block = ({ num }) => {
 
 const Board = () => {
   //  Size of the grid
-  const gridSize = 6;
+  const gridSize = 4;
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSize)
@@ -64,12 +64,19 @@ const Board = () => {
     setGrid(newGrid);
   };
 
+  const operationsCollection = (row) => {
+    row = swipe(row);
+    row = combine(row);
+    row = swipe(row);
+    return row;
+  };
+
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = (e) => {
     let newGrid = cloneDeep(grid);
     if (e.key == " ") {
       for (let i = 0; i < gridSize; i++) {
-        newGrid[i] = swipe(newGrid[i]);
+        newGrid[i] = operationsCollection(newGrid[i]);
       }
       console.log(newGrid);
       addNumber(newGrid);
@@ -114,9 +121,22 @@ const Board = () => {
     let arr = row.filter((val) => val);
     let missing = gridSize - arr.length;
     let zeros = Array(missing).fill(0);
-    arr = arr.concat(zeros);
+    arr = zeros.concat(arr);
 
     return arr;
+  };
+
+  // Combine function
+  const combine = (row: any[]) => {
+    for (let i = gridSize - 1; i >= 1; i--) {
+      let a = row[i];
+      let b = row[i - 1];
+      if (a == b) {
+        row[i] = a + b;
+        row[i - 1] = 0;
+      }
+    }
+    return row;
   };
 
   // - Reset and Won state
