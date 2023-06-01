@@ -1,53 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import Board from "./Board";
 import styled from "styled-components";
+import theme from "../styles/theme";
 
-const BoardWrapper = styled.div`
-  background: #b6b6b6;
-  width: max-content;
-  margin: auto;
+const HomeWrapper = styled.div`
+  font-family: "Montserrat", sans-serif;
+  background: ${theme.backgroundColor};
+  height: 100vh;
   display: flex;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 12px;
-`;
-
-const BlockWrapper = styled.div`
-  height: 80px;
-  width: 80px;
-  border-radius: 5px;
-  margin: 8px;
-  display: flex;
-  background: #848484;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  color: white;
+
+  h1 {
+    margin: 40px 0px 10px 0px;
+    font-family: "Montserrat", sans-serif;
+    color: ${theme.secondaryColor};
+  }
 `;
 
-const Block = ({ num }) => {
-  return <BlockWrapper>{num !== 0 ? num : ""}</BlockWrapper>;
-};
-
 const Home = () => {
-  const [grid, setGrid] = useState([
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ]);
-
   return (
-    <BoardWrapper>
-      {grid.map((singleRow, index) => {
-        return (
-          <div key={index}>
-            {singleRow.map((digit, digitIndex) => (
-              <Block num={digit} key={digitIndex} />
-            ))}
-          </div>
-        );
-      })}
-    </BoardWrapper>
+    <HomeWrapper>
+      <h1>2048 Game</h1>
+      <Board />
+    </HomeWrapper>
   );
 };
 

@@ -23,7 +23,7 @@ At First there will be two randomly placed 2s or 4s to start the game (Initial S
 Tech Stack:
 - React
 - TypeScript
-- Styled-Components
+- Styled-Components (Add types, when using TS)
 - Vite
 
 <br/>
