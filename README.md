@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/pranavgoel29/2048-game/main/src/assets/logo.png" alt="logo" width="20%" />
+
 # 2048-Game
 
 ## Functions, components of the Game
