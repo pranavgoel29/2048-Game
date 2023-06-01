@@ -29,6 +29,7 @@ Tech Stack:
 <br>
 
 I am trying to document how I progressed with the whole game development, attaching screenshots for reference.
+
 ![Initial state during developement](./screenshots/initial_state_developement.png)
 
 
