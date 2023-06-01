@@ -105,6 +105,29 @@ const Board = () => {
     return rotateNewGrid;
   };
 
+  // - add number -  add a new item to the grid
+  const addNumber = (newGrid) => {
+    // It should pick a random location on the grid having 0 and put 2 or 4 there instead.
+
+    // We can first check if the grid is full or not and are there any spots having 0.
+
+    // Defining type of string array object.
+    let options: { x: number; y: number }[] = []; // Array to store the spots having 0.
+
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        if (grid[i][j] === 0) {
+          options.push({ x: i, y: j });
+        }
+      }
+    }
+
+    if (options.length > 0) {
+      let spot = getRandomItem(options);
+      newGrid[spot.x][spot.y] = Math.random() > 0.5 ? 2 : 4;
+    }
+  };
+
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = (e) => {
     let newGrid = cloneDeep(grid);
@@ -166,28 +189,7 @@ const Board = () => {
     return item;
   };
 
-  // - add number -  add a new item to the grid
-  const addNumber = (newGrid) => {
-    // It should pick a random location on the grid having 0 and put 2 or 4 there instead.
-
-    // We can first check if the grid is full or not and are there any spots having 0.
-
-    // Defining type of string array object.
-    let options: { x: number; y: number }[] = []; // Array to store the spots having 0.
-
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
-        if (grid[i][j] === 0) {
-          options.push({ x: i, y: j });
-        }
-      }
-    }
-
-    if (options.length > 0) {
-      let spot = getRandomItem(options);
-      newGrid[spot.x][spot.y] = Math.random() > 0.5 ? 2 : 4;
-    }
-  };
+  
 
   // - Swipes/moves - screenLeft, right, up, down
   const swipe = (row: any[]) => {
