@@ -26,9 +26,6 @@ Tech Stack:
 - Styled-Components (Add types, when using TS)
 - Vite
 
-<br/>
-
-- lodash clonedeep for arrays
 
 ## 🐛Bug Reporting
 
