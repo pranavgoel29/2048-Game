@@ -26,6 +26,10 @@ Tech Stack:
 - Styled-Components
 - Vite
 
+<br/>
+
+- lodash clonedeep for arrays
+
 ## 🐛Bug Reporting
 
 Feel free to [open an issue](https://github.com/pranavgoel29/2048-Game/issues) on GitHub if you find any bug.
