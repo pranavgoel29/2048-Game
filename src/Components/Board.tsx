@@ -31,12 +31,7 @@ const BlockWrapper = styled.div`
 `;
 
 const Block = ({ num }) => {
-  return (
-    <BlockWrapper>
-      {/* {num} */}
-      {num !== 0 ? num : ""}
-    </BlockWrapper>
-  );
+  return <BlockWrapper>{num !== 0 ? num : ""}</BlockWrapper>;
 };
 
 const Board = () => {
@@ -71,16 +66,34 @@ const Board = () => {
     return row;
   };
 
+  const compareGrid = (a, b) => {
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        if (a[i][j] !== b[i][j]) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = (e) => {
     let newGrid = cloneDeep(grid);
+    let past = cloneDeep(grid);
     if (e.key == " ") {
       for (let i = 0; i < gridSize; i++) {
         newGrid[i] = operationsCollection(newGrid[i]);
       }
-      console.log(newGrid);
-      addNumber(newGrid);
-      setGrid(newGrid);
+
+      // To check if something moved/swiped so we can add a new number. Passing the past version (basically without operations) and new version after operations.
+      let gridChanged = compareGrid(past, newGrid);
+
+      if (gridChanged) {
+        console.log(newGrid);
+        addNumber(newGrid);
+        setGrid(newGrid);
+      }
     }
   };
 

@@ -35,7 +35,6 @@ I am trying to document how I progressed with the whole game development, attach
 <br>
 
 <blockquote><b><i>Till this point we were able to have a initialization state of the game where we will either get two boxes with the random combination of 2 and 4.</i></b></blockquote>
-&nbsp;
 
 ![Initial state during developement](./screenshots/initial_state_developement.png)
 
