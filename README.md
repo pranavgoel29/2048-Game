@@ -26,6 +26,13 @@ Tech Stack:
 - Styled-Components (Add types, when using TS)
 - Vite
 
+<br>
+
+I am trying to document how I progressed with the whole game development, attaching screenshots for reference.
+![Initial state during developement](./screenshots/initial_state_developement.png)
+
+
+<br>
 
 ## 🐛Bug Reporting
 
