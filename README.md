@@ -45,7 +45,6 @@ I am trying to document how I progressed with the whole game development, attach
 
 
 <blockquote><b><i>Adding Operation in one-direction, combined with swipe.</i></b></blockquote>
-&nbsp;
 <img src="https://raw.githubusercontent.com/pranavgoel29/2048-game/main/screenshots/Adding_operation.gif" alt="Adding Operation" width="100%" height="100%" loop=infinite>
 
 <br>
