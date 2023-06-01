@@ -41,13 +41,13 @@ const Block = ({ num }) => {
 
 const Board = () => {
   //  Size of the grid
-  const gridSize = 4;
-  const [grid, setGrid] = useState([
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ]);
+  const gridSize = 6;
+
+  // Generating a 2D array of 'gridSize' will '0' as fill.
+  let arrayGrid = Array(gridSize)
+    .fill(0)
+    .map(() => Array(gridSize).fill(0));
+  const [grid, setGrid] = useState(arrayGrid);
 
   // Functions required
   // - initialize
@@ -62,8 +62,6 @@ const Board = () => {
     // console.table(newGrid);
 
     setGrid(newGrid);
-
-    console.log(swipe([2, 2, 0, 4]));
   };
 
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
@@ -114,7 +112,7 @@ const Board = () => {
   const swipe = (row: any[]) => {
     // keep everything in order which is not a zero.
     let arr = row.filter((val) => val);
-    let missing = 4 - arr.length;
+    let missing = gridSize - arr.length;
     let zeros = Array(missing).fill(0);
     arr = arr.concat(zeros);
 
