@@ -30,6 +30,13 @@ const BlockWrapper = styled.div`
   color: ${theme.secondaryColor};
 `;
 
+enum KeyCodes {
+  UP_ARROW = 38,
+  DOWN_ARROW = 40,
+  LEFT_ARROW = 37,
+  RIGHT_ARROW = 39,
+}
+
 const Block = ({ num }) => {
   return <BlockWrapper>{num !== 0 ? num : ""}</BlockWrapper>;
 };
@@ -77,20 +84,74 @@ const Board = () => {
     return false;
   };
 
+  const flipGrid = (grid) => {
+    for (let i = 0; i < gridSize; i++) {
+      grid[i].reverse();
+    }
+    return grid;
+  };
+
+  const rotateGrid = (passGrid) => {
+    let rotateNewGrid = Array(gridSize)
+      .fill(0)
+      .map(() => Array(gridSize).fill(0));
+
+    for (let i = 0; i < gridSize; i++) {
+      for (let j = 0; j < gridSize; j++) {
+        rotateNewGrid[i][j] = passGrid[j][i];
+      }
+    }
+
+    return rotateNewGrid;
+  };
+
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = (e) => {
     let newGrid = cloneDeep(grid);
-    let past = cloneDeep(grid);
-    if (e.key == " ") {
+
+    let flipped = false;
+    let rotated = false;
+    let played = true;
+
+    if (e.keyCode == KeyCodes.DOWN_ARROW) {
+    } else if (e.keyCode == KeyCodes.UP_ARROW) {
+      newGrid = flipGrid(newGrid);
+      flipped = true;
+    } else if (e.keyCode == KeyCodes.RIGHT_ARROW) {
+      newGrid = rotateGrid(newGrid);
+      rotated = true;
+    } else if (e.keyCode == KeyCodes.LEFT_ARROW) {
+      newGrid = rotateGrid(newGrid);
+      newGrid = flipGrid(newGrid);
+      rotated = true;
+      flipped = true;
+    } else {
+      played = false;
+    }
+
+    if (played) {
+      // Comparing Keycodes, assuming only arrows keys are pressed.
+      let past = cloneDeep(grid);
       for (let i = 0; i < gridSize; i++) {
         newGrid[i] = operationsCollection(newGrid[i]);
       }
 
       // To check if something moved/swiped so we can add a new number. Passing the past version (basically without operations) and new version after operations.
+
+      if (flipped) {
+        flipGrid(newGrid);
+      }
+
+      if (rotated) {
+        newGrid = rotateGrid(newGrid);
+        newGrid = rotateGrid(newGrid);
+        newGrid = rotateGrid(newGrid);
+      }
+
       let gridChanged = compareGrid(past, newGrid);
 
       if (gridChanged) {
-        console.log(newGrid);
+        console.log("Grid Changed: ", newGrid);
         addNumber(newGrid);
         setGrid(newGrid);
       }
