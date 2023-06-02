@@ -183,7 +183,10 @@ const Board = () => {
     }
 
     if (options.length > 0) {
-      let spot = getRandomItem(options);
+      let index = ~~(Math.random() * options.length);
+
+    let spot = options[index];
+     // let spot = getRandomItem(options);
       newGrid[spot.x][spot.y] = Math.random() <= 0.7 ? 2 : 4;
     }
   };
