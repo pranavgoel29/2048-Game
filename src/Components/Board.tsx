@@ -158,7 +158,11 @@ const Board = () => {
 
   const swipeLeft = (grid) => {
     for (let c = 0; c < gridSize; c++) {
-      let row = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
+      // let row = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
+      let row: any[] = [];
+      for (let r = 0; r < gridSize; r++) {
+        row.push(grid[r][c]);
+      }
 
       row = slide(row);
 
@@ -172,7 +176,11 @@ const Board = () => {
 
   const swipeRight = (grid) => {
     for (let c = 0; c < gridSize; c++) {
-      let row = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
+      let row: any[] = [];
+      for (let r = 0; r < gridSize; r++) {
+        row.push(grid[r][c]);
+      }
+
 
       row.reverse();
       row = slide(row);
