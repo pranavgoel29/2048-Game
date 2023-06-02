@@ -108,15 +108,8 @@ enum KeyCodes {
 }
 
 const Block = ({ num }) => {
-  if (num <= 4096) {
 
-            tile.classList.add("x"+num;
 
-        } else {
-
-            tile.classList.add("x8192");
-
-        }
   return <BlockWrapper><div className=`tile ${num<=4096?'x'+num:'x8192'}`>{num !== 0 ? num : ""}</div></BlockWrapper>;
 };
 
