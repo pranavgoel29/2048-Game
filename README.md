@@ -54,6 +54,12 @@ Added color for different numbers.
 
 <br>
 
+
+Added scores, tracking best and current score, using localStorage to persist the best scores and updating them.
+![Initial state with number coloured during developement](./screenshots/initial_state_developement_scores.png)
+
+<br>
+
 ## 🐛Bug Reporting
 
 Feel free to [open an issue](https://github.com/pranavgoel29/2048-Game/issues) on GitHub if you find any bug.
