@@ -8,7 +8,13 @@ import { TileWrapper } from "../Wrappers/TileWrapper";
 import { BlockWrapper } from "../Wrappers/BlockWrapper";
 
 import { addNumber, compareGrid } from "../utils/gameMoves";
-import { swipeDown, swipeLeft, swipeRight, swipeUp } from "../utils/swipes";
+import {
+  score,
+  swipeDown,
+  swipeLeft,
+  swipeRight,
+  swipeUp,
+} from "../utils/swipes";
 
 const BoardWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
@@ -38,10 +44,16 @@ const Block = ({ num }) => {
   );
 };
 
+//  Size of the grid
 export const gridSize = 4;
 
-const Board = () => {
-  //  Size of the grid
+const Board = (scoreSet: any) => {
+  const [gameScore, setGameScore] = useState(0);
+
+  useEffect(() => {
+    scoreSet.score(gameScore);
+    console.log("Board Score: ",gameScore)
+  }, [gameScore]);
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSize)
@@ -70,15 +82,25 @@ const Board = () => {
 
     // let played = true;
 
+    let localscore = 0;
+
     if (e.keyCode == KeyCodes.DOWN_ARROW) {
       console.log("Down");
       newGrid = await swipeDown(newGrid);
+      localscore = await score();
+      setGameScore(localscore);
     } else if (e.keyCode == KeyCodes.UP_ARROW) {
       newGrid = await swipeUp(newGrid);
+      localscore = await score();
+      setGameScore(localscore);
     } else if (e.keyCode == KeyCodes.RIGHT_ARROW) {
       newGrid = await swipeRight(newGrid);
+      localscore = await score();
+      setGameScore(localscore);
     } else if (e.keyCode == KeyCodes.LEFT_ARROW) {
       newGrid = await swipeLeft(newGrid);
+      localscore = await score();
+      setGameScore(localscore);
     } else {
       // played = false;
     }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Board from "./Board";
 import styled from "styled-components";
 import theme from "../styles/theme";
 import GameInfo from "./GameInfo";
 
-import { useContext } from "react";
+import { useState } from "react";
 
 const HomeWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
@@ -35,7 +35,7 @@ const HomeWrapper = styled.div`
       text-align: center;
 
       .scoreSectionCard {
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 5px;
         background: ${theme.gameInfoCardBackgroundAccentColor};
         p {
@@ -50,10 +50,31 @@ const HomeWrapper = styled.div`
 `;
 
 const Home = () => {
+  const [gameScore, setGameScoreHome] = useState(0);
+  const [bestScore, setBestScoreHome] = useState(() => {
+    const localBestObjectString = localStorage.getItem("bestScore");
+    const localBestObject = localBestObjectString ? JSON.parse(localBestObjectString) : null;
+    return localBestObject ? localBestObject.number : 0;
+  });
+
+
+  
+  useEffect(() => {
+    if (gameScore >= bestScore) {
+      localStorage.setItem(
+        "bestScore",
+        JSON.stringify({
+          number: gameScore,
+        })
+      );
+      setBestScoreHome(gameScore);
+    }
+  }, [gameScore]);
+
   return (
     <HomeWrapper>
-      <GameInfo />
-      <Board />
+      <GameInfo currentScore={gameScore} bestScore={bestScore} />
+      <Board score={setGameScoreHome} />
     </HomeWrapper>
   );
 };

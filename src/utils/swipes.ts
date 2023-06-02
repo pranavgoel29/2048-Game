@@ -1,6 +1,6 @@
 import { gridSize } from "../Components/Board";
 
-let gameScore: number = 0;
+let gameScore: any = 0;
 
 const filterZero = async (row) => {
   return row.filter((num) => num != 0);
@@ -24,6 +24,11 @@ const slide = async (row) => {
   }
 
   return row;
+};
+
+const score = async () => {
+  console.log("Game Score: ",gameScore)
+  return gameScore;
 };
 
 const swipeUp = async (grid) => {
@@ -85,4 +90,4 @@ const swipeRight = async (grid) => {
   return grid;
 };
 
-export { swipeLeft, swipeDown, swipeRight, swipeUp };
+export { score,swipeLeft, swipeDown, swipeRight, swipeUp };

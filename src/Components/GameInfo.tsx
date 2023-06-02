@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, createContext } from "react";
+import { useState, useEffect } from "react";
 
-const GameInfo = () => {
-  const [gameScore, setGameScore] = useState(0);
+const GameInfo = (gameScore: any) => {
 
   return (
     <>
@@ -10,10 +9,10 @@ const GameInfo = () => {
         <h1>2048</h1>
         <div className="scoreSection">
           <div className="scoreSectionCard">
-            <p>Best: {gameScore}</p>
+            <p>Score: {gameScore.currentScore}</p>
           </div>
           <div className="scoreSectionCard">
-            <p>Score: {gameScore}</p>
+            <p>Best: {gameScore.bestScore}</p>
           </div>
         </div>
       </div>
