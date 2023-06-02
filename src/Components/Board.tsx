@@ -114,7 +114,7 @@ const Board = () => {
   };
 
   // - Swipes/moves - screenLeft, right, up, down
-  const slide = (row) => {
+  const slide = async (row) => {
     row = filterZero(row);
     console.log(row);
 
@@ -134,10 +134,10 @@ const Board = () => {
     return row;
   };
 
-  const swipeUp = (grid) => {
+  const swipeUp = async (grid) => {
     for (let r = 0; r < gridSize; r++) {
       let row = grid[r];
-      row = slide(row);
+      row = await slide(row);
       grid[r] = row;
     }
 
@@ -148,7 +148,7 @@ const Board = () => {
     for (let r = 0; r < gridSize; r++) {
       let row = grid[r];
       row.reverse();
-      row = slide(row);
+      row = await slide(row);
       row.reverse();
       grid[r] = row;
     }
@@ -164,7 +164,7 @@ const Board = () => {
         row.push(grid[r][c]);
       }
 
-      row = slide(row);
+      row = await slide(row);
 
       for (let r = 0; r < gridSize; r++) {
         grid[r][c] = row[r];
@@ -183,7 +183,7 @@ const Board = () => {
 
 
       row.reverse();
-      row = slide(row);
+      row = await slide(row);
       row.reverse();
 
       for (let r = 0; r < gridSize; r++) {
@@ -204,7 +204,7 @@ const Board = () => {
       console.log("left");
       newGrid = swipeDown(newGrid);
     } else if (e.keyCode == KeyCodes.UP_ARROW) {
-      newGrid = swipeUp(newGrid);
+      newGrid = await swipeUp(newGrid);
     } else if (e.keyCode == KeyCodes.RIGHT_ARROW) {
       newGrid = swipeRight(newGrid);
     } else if (e.keyCode == KeyCodes.LEFT_ARROW) {
