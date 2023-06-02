@@ -1,5 +1,6 @@
 import { gridSize } from "../Components/Board";
 
+// Function to compare 2 grids and return 'false' if they are 'same' and 'true' if they are 'not'.
  export const compareGrid = async (a, b) => {
     for (let i = 0; i < gridSize; i++) {
       for (let j = 0; j < gridSize; j++) {
@@ -39,6 +40,8 @@ import { gridSize } from "../Components/Board";
 
     if (options.length > 0) {
       let spot = getRandomItem(options);
+
+      // 2 has 70% probabilty and 4 has 30% according to the below function.
       newGrid[spot.x][spot.y] = Math.random() <= 0.7 ? 2 : 4;
     }
   };

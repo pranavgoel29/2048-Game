@@ -108,6 +108,7 @@ const Board = (scoreSet: any) => {
 
     // let played = true;
 
+    // Comparing Keycodes, assuming only arrows keys are pressed.
     if (e.keyCode == KeyCodes.DOWN_ARROW && !isWon) {
       console.log("Down");
       newGrid = await swipeDown(newGrid);
@@ -125,10 +126,11 @@ const Board = (scoreSet: any) => {
       // played = false;
     }
 
-    // Comparing Keycodes, assuming only arrows keys are pressed.
-    let past = cloneDeep(grid);
+    // Storing grid state before updation in a new variable to pass it to comparison function.
+    let pastGrid = cloneDeep(grid);
 
-    let gridChanged = await compareGrid(past, newGrid);
+    // Checking if the grid changed, basically checking if elements moved.
+    let gridChanged = await compareGrid(pastGrid, newGrid);
 
     if (gridChanged) {
       // console.log("Grid Changed: ");
