@@ -77,8 +77,49 @@ Added color for different numbers.</i></b></blockquote>
 <br>
 
 
+## Prerequisites
+
+- Node.js (v14 or later)
+- Yarn (v1.22 or later)
+
+<br>
+
+## Getting Started
+
+1. Clone this repository to your local machine: 
+```bash
+git clone https://github.com/pranavgoel29/2048-Game
+```
+
+
+2. Navigate to the project's directory:
+```bash
+cd 2048-Game
+```
+
+3. Install dependencies using Yarn:
+```bash
+yarn install
+```
+
+<br>
+
+## Running the App
+
+To run the app in development mode, use the following command:
+```bash
+yarn dev
+```
+
+This command will start the Vite development server and compile your React app.
+
+<br>
+
+
 ## Future Goals
 - Add Controls for mobile.
+
+<br>
 
 ## 🐛Bug Reporting
 
