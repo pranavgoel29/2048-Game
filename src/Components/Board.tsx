@@ -17,10 +17,11 @@ const BoardWrapper = styled.div`
 
 const BlockWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
+  .tile{
   height: 80px;
   width: 80px;
   border-radius: 5px;
-  font-weight: 700;
+  font-weight: 700;}
   margin: 8px;
   display: flex;
   background: ${theme.cardBackgroundAccentColor};
@@ -28,6 +29,75 @@ const BlockWrapper = styled.div`
   align-items: center;
   font-size: 24px;
   color: ${theme.secondaryColor};
+`;
+
+const TileWrapper = styled.div`
+/* colored tiles */
+
+.x2 {
+    background-color: #eee4da;
+    color: #727371;
+}
+
+.x4 {
+    background-color: #ece0ca;
+    color: #727371;
+}
+
+.x8 {
+    background-color: #f4b17a;
+    color: white;
+}
+
+.x16{
+    background-color: #f59575;
+    color: white;
+}
+
+.x32{
+    background-color: #f57c5f;
+    color: white;
+}
+
+.x64{
+    background-color: #f65d3b;
+    color: white;
+}
+
+.x128{
+    background-color: #edce71;
+    color: white;
+}
+
+.x256{
+    background-color: #edcc63;
+    color: white;
+}
+
+.x512{
+    background-color: #edc651;
+    color: white;
+}
+
+.x1024{
+    background-color: #eec744;
+    color: white;
+}
+
+.x2048{
+    background-color: #ecc230;
+    color: white;
+}
+
+.x4096 {
+    background-color: #fe3d3d;
+    color: white;
+}
+
+.x8192 {
+    background-color: #ff2020;
+    color: white;
+}
 `;
 
 enum KeyCodes {
@@ -38,8 +108,18 @@ enum KeyCodes {
 }
 
 const Block = ({ num }) => {
-  return <BlockWrapper>{num !== 0 ? num : ""}</BlockWrapper>;
+  if (num <= 4096) {
+
+            tile.classList.add("x"+num;
+
+        } else {
+
+            tile.classList.add("x8192");
+
+        }
+  return <BlockWrapper><div className=`tile ${num<=4096?'x'+num:'x8192'}`>{num !== 0 ? num : ""}</div></BlockWrapper>;
 };
+
 
 const Board = () => {
   //  Size of the grid
@@ -238,11 +318,13 @@ const Board = () => {
     <BoardWrapper>
       {grid.map((singleRow, index) => {
         return (
+          <TileWrapper>
           <div key={index}>
             {singleRow.map((digit, digitIndex) => (
               <Block num={digit} key={digitIndex} />
             ))}
           </div>
+            </TileWrapper>
         );
       })}
     </BoardWrapper>
