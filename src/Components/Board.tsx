@@ -4,8 +4,8 @@ import theme from "../styles/theme";
 import cloneDeep from "lodash.clonedeep";
 import { useEvent } from "../utils/useEvent";
 
-import { TileWrapper } from "./TileWrapper";
-import { BlockWrapper } from "./BlockWrapper";
+import { TileWrapper } from "../Wrappers/TileWrapper";
+import { BlockWrapper } from "../Wrappers/BlockWrapper";
 
 import { addNumber, compareGrid } from './gameMoves';
 import { swipeDown, swipeLeft, swipeRight, swipeUp } from "./swipes";
