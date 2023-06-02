@@ -22,6 +22,7 @@ const BlockWrapper = styled.div`
   width: 80px;
   border-radius: 5px;
   font-weight: 700;
+  display:flex;
   justify-content: center;
 
   align-items: center;
