@@ -39,7 +39,7 @@ const Block = ({ num }) => {
 };
 
 //  Size of the grid
-export const gridSize = 8;
+export const gridSize = 4;
 
 // Winning state/number of the Game
 export const winningNumber = 2048;
