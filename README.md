@@ -68,6 +68,12 @@ Added color for different numbers.</i></b></blockquote>
 
 <br>
 
+<b>Completed View! 🥳</b>
+
+![Added new game button](./screenshots/completed_view.png)
+
+<br>
+
 
 ## 🐛Bug Reporting
 

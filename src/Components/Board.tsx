@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import theme from "../styles/theme";
 import cloneDeep from "lodash.clonedeep";
 import { useEvent } from "../utils/useEvent";
 
