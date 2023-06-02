@@ -16,6 +16,7 @@ import {
   swipeRight,
   swipeUp,
 } from "../utils/swipes";
+import ButtonWrapper from "./ButtonWrapper";
 
 const BoardWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
@@ -80,9 +81,20 @@ const Board = (scoreSet: any) => {
   const [isWon, setGameWon] = useState(false);
 
   // Functions required
+
+  // Reset Game
+  const resetGame = () => {
+    let newGrid = cloneDeep(arrayGrid);
+    setGrid(newGrid);
+    setGameWon(false);
+    initialize(newGrid);
+  };
+
   // - initialize
-  const initialize = () => {
-    let newGrid = cloneDeep(grid);
+  const initialize = (newGrid) => {
+    // newGrid = newGrid.map((row) => row.map(() => 0));
+
+    // Clear the grid by setting all values to 0
 
     addNumber(newGrid);
     // console.log("run 1");
@@ -137,29 +149,55 @@ const Board = (scoreSet: any) => {
 
   useEffect(() => {
     console.log("Initialize");
-    initialize();
+    initialize(cloneDeep(grid));
   }, []);
 
   useEvent("keydown", keyPressed);
 
   return (
-    <BoardWrapper>
+    <>
       {!isWon ? (
-        grid.map((singleRow, index) => {
-          return (
-            <div key={index}>
-              <TileWrapper>
-                {singleRow.map((digit, digitIndex) => (
-                  <Block num={digit} key={digitIndex} />
-                ))}
-              </TileWrapper>
-            </div>
-          );
-        })
+        <>
+          <ButtonWrapper>
+            <button
+              style={{ marginTop: "20px" }}
+              className="play-button"
+              onClick={() => resetGame()}
+            >
+              New Game
+            </button>
+          </ButtonWrapper>
+          <BoardWrapper>
+            {grid.map((singleRow, index) => {
+              return (
+                <div key={index}>
+                  <TileWrapper>
+                    {singleRow.map((digit, digitIndex) => (
+                      <Block num={digit} key={digitIndex} />
+                    ))}
+                  </TileWrapper>
+                </div>
+              );
+            })}
+          </BoardWrapper>
+        </>
       ) : (
-        <div className="gameWon">Game Won!</div>
+        <>
+          <ButtonWrapper>
+            <button
+              style={{ marginTop: "20px" }}
+              className="play-button"
+              onClick={() => resetGame()}
+            >
+              Play Again
+            </button>
+          </ButtonWrapper>
+          <BoardWrapper>
+            <div className="gameWon">Game Won!</div>
+          </BoardWrapper>
+        </>
       )}
-    </BoardWrapper>
+    </>
   );
 };
 

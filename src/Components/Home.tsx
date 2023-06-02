@@ -19,6 +19,7 @@ const HomeWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 350px;
     width: 22%;
     color: ${theme.secondaryColor};
     margin: 40px 0px 20px 0px;
