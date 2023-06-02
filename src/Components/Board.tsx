@@ -110,7 +110,7 @@ enum KeyCodes {
 const Block = ({ num }) => {
 
 
-  return <BlockWrapper><div className=`tile ${num<=4096?'x'+num:'x8192'}`>{num !== 0 ? num : ""}</div></BlockWrapper>;
+  return <BlockWrapper><div className={`tile ${num<=4096?'x'+num:'x8192'}`}>{num !== 0 ? num : ""}</div></BlockWrapper>;
 };
 
 
