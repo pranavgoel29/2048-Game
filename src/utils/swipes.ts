@@ -1,5 +1,7 @@
 import { gridSize } from "../Components/Board";
 
+let gameScore: number = 0;
+
 const filterZero = async (row) => {
   return row.filter((num) => num != 0);
 };
@@ -10,6 +12,7 @@ const slide = async (row) => {
   for (let i = 0; i < row.length - 1; i++) {
     if (row[i] === row[i + 1]) {
       row[i] *= 2;
+      gameScore += row[i];
       row[i + 1] = 0;
     }
   }

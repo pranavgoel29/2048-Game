@@ -7,7 +7,7 @@ import { useEvent } from "../utils/useEvent";
 import { TileWrapper } from "../Wrappers/TileWrapper";
 import { BlockWrapper } from "../Wrappers/BlockWrapper";
 
-import { addNumber, compareGrid } from '../utils/gameMoves';
+import { addNumber, compareGrid } from "../utils/gameMoves";
 import { swipeDown, swipeLeft, swipeRight, swipeUp } from "../utils/swipes";
 
 const BoardWrapper = styled.div`
@@ -64,8 +64,6 @@ const Board = () => {
     setGrid(newGrid);
   };
 
- 
-
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = async (e) => {
     let newGrid = cloneDeep(grid);
@@ -111,11 +109,11 @@ const Board = () => {
       {grid.map((singleRow, index) => {
         return (
           <div key={index}>
-          <TileWrapper>
-            {singleRow.map((digit, digitIndex) => (
-              <Block num={digit} key={digitIndex} />
-            ))}
-          </TileWrapper>
+            <TileWrapper>
+              {singleRow.map((digit, digitIndex) => (
+                <Block num={digit} key={digitIndex} />
+              ))}
+            </TileWrapper>
           </div>
         );
       })}
