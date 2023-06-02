@@ -77,6 +77,9 @@ Added color for different numbers.</i></b></blockquote>
 <br>
 
 
+## Future Goals
+- Add Controls for mobile.
+
 ## 🐛Bug Reporting
 
 Feel free to [open an issue](https://github.com/pranavgoel29/2048-Game/issues) on GitHub if you find any bug.
