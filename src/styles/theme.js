@@ -9,6 +9,7 @@ const theme = {
     
     gameInfoCardBackgroundAccentColor: '#b7d0f3',
 
+    gameLostColor: '#fcad4d',
     primaryColor: '#1D2939',
     secondaryColor: '#d2f5f9',
     gameWonColor: '#89ceff',

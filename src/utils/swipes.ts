@@ -18,6 +18,24 @@ export const isGameWon = (grid) => {
   return false;
 };
 
+// Check if Game lost
+export const isGameLost = (grid) => {
+  for (let c = 0; c < gridSize; c++) {
+    for (let r = 0; r < gridSize; r++) {
+      if (grid[c][r] === 0) {
+        return false;
+      }
+      if (c !== gridSize - 1 && grid[c][r] === grid[c + 1][r]) {
+        return false;
+      }
+      if (c !== gridSize - 1 && grid[c][r] === grid[c][r + 1]) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
 // - Swipes/moves - screenLeft, right, up, down
 const slide = async (row) => {
   row = await filterZero(row);

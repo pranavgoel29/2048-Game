@@ -6,9 +6,11 @@ import { useEvent } from "../utils/useEvent";
 
 import { TileWrapper } from "../Wrappers/TileWrapper";
 import { BlockWrapper } from "../Wrappers/BlockWrapper";
+import ButtonWrapper from "../Wrappers/ButtonWrapper";
 
 import { addNumber, compareGrid } from "../utils/gameMoves";
 import {
+  isGameLost,
   isGameWon,
   score,
   swipeDown,
@@ -16,26 +18,19 @@ import {
   swipeRight,
   swipeUp,
 } from "../utils/swipes";
-import ButtonWrapper from "./ButtonWrapper";
+import { BoardWrapper } from "./BoardWrapper";
 
-const BoardWrapper = styled.div`
+const BoardViewWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
-  background: ${theme.backgroundAccentColor};
-  width: max-content;
-  margin: auto;
-  display: flex;
-  margin-top: 30px;
-  padding: 10px;
-  border-radius: 12px;
-
-  .gameWon {
+  .gameLost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Montserrat", sans-serif;
-    padding: 40px;
-    border-radius: 10px;
-    font-size: 34px;
+    margin-top: 20px;
     font-weight: 700;
-    background: ${theme.gameWonColor};
-    color: ${theme.primaryColor};
+    font-size: 24px;
+    color: ${theme.gameLostColor};
   }
 `;
 
@@ -79,6 +74,7 @@ const Board = (scoreSet: any) => {
     .map(() => Array(gridSize).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
   const [isWon, setGameWon] = useState(false);
+  const [isLost, setGameLost] = useState(false);
 
   // Functions required
 
@@ -87,6 +83,7 @@ const Board = (scoreSet: any) => {
     let newGrid = cloneDeep(arrayGrid);
     setGrid(newGrid);
     setGameWon(false);
+    setGameLost(false);
     initialize(newGrid);
   };
 
@@ -116,18 +113,22 @@ const Board = (scoreSet: any) => {
       console.log("Down");
       newGrid = await swipeDown(newGrid);
       setGameWon(isGameWon(newGrid));
+      setGameLost(isGameLost(newGrid));
       updateScore();
     } else if (e.keyCode == KeyCodes.UP_ARROW && !isWon) {
       newGrid = await swipeUp(newGrid);
       setGameWon(isGameWon(newGrid));
+      setGameLost(isGameLost(newGrid));
       updateScore();
     } else if (e.keyCode == KeyCodes.RIGHT_ARROW && !isWon) {
       newGrid = await swipeRight(newGrid);
       setGameWon(isGameWon(newGrid));
+      setGameLost(isGameLost(newGrid));
       updateScore();
     } else if (e.keyCode == KeyCodes.LEFT_ARROW && !isWon) {
       newGrid = await swipeLeft(newGrid);
       setGameWon(isGameWon(newGrid));
+      setGameLost(isGameLost(newGrid));
       updateScore();
     } else {
       // played = false;
@@ -155,9 +156,10 @@ const Board = (scoreSet: any) => {
   useEvent("keydown", keyPressed);
 
   return (
-    <>
+    <BoardViewWrapper>
       {!isWon ? (
         <>
+          <p className="gameLost">{isLost ? "Game Lost !" : ""}</p>
           <ButtonWrapper>
             <button
               style={{ marginTop: "20px" }}
@@ -167,6 +169,7 @@ const Board = (scoreSet: any) => {
               New Game
             </button>
           </ButtonWrapper>
+
           <BoardWrapper>
             {grid.map((singleRow, index) => {
               return (
@@ -197,7 +200,7 @@ const Board = (scoreSet: any) => {
           </BoardWrapper>
         </>
       )}
-    </>
+    </BoardViewWrapper>
   );
 };
 

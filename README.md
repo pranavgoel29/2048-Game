@@ -48,17 +48,26 @@ I am trying to document how I progressed with the whole game development, attach
 
 <br>
 
-Seperated files/functions to make them easy to maintain. 😁
-Added color for different numbers.
+<blockquote><b><i>Seperated files/functions to make them easy to maintain. 😁
+Added color for different numbers.</i></b></blockquote>
+
 ![Initial state with number coloured during developement](./screenshots/initial_state_developement_color.png)
 
 <br>
 
 
-Added scores, tracking best and current score, using localStorage to persist the best scores and updating them.
+<blockquote><b><i>Added scores, tracking best and current score, using localStorage to persist the best scores and updating them.</i></b></blockquote>
+
 ![Initial state with number coloured during developement](./screenshots/initial_state_developement_scores.png)
 
 <br>
+
+<blockquote><b><i>Added new game button.</i></b></blockquote>
+
+![Added new game button](./screenshots/Added_new_game_button.png)
+
+<br>
+
 
 ## 🐛Bug Reporting
 
