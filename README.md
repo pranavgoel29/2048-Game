@@ -28,6 +28,8 @@ Tech Stack:
 - Styled-Components (Add types, when using TS)
 - Vite
 
+Used 'lodash.clonedeep' for deep cloning the matrix.
+
 <br>
 
 I am trying to document how I progressed with the whole game development, attaching screenshots for reference.

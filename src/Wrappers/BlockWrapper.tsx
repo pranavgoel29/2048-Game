@@ -5,8 +5,8 @@ export const BlockWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
   .tile {
     font-family: "Montserrat", sans-serif;
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
     border-radius: 5px;
     font-weight: 700;
     display: flex;

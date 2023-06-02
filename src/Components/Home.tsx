@@ -7,6 +7,7 @@ import GameInfo from "./GameInfo";
 import { useState } from "react";
 
 const HomeWrapper = styled.div`
+  padding: 40px;
   font-family: "Montserrat", sans-serif;
   background: ${theme.backgroundColor};
   height: 100vh;
@@ -53,12 +54,12 @@ const Home = () => {
   const [gameScore, setGameScoreHome] = useState(0);
   const [bestScore, setBestScoreHome] = useState(() => {
     const localBestObjectString = localStorage.getItem("bestScore");
-    const localBestObject = localBestObjectString ? JSON.parse(localBestObjectString) : null;
+    const localBestObject = localBestObjectString
+      ? JSON.parse(localBestObjectString)
+      : null;
     return localBestObject ? localBestObject.number : 0;
   });
 
-
-  
   useEffect(() => {
     if (gameScore >= bestScore) {
       localStorage.setItem(

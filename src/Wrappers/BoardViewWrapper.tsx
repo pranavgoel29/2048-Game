@@ -18,7 +18,7 @@ export const BoardViewWrapper = styled.div`
     font-family: "Montserrat", sans-serif;
     margin-top: 40px;
     font-size: 20px;
-    max-width: 400px;
+    max-width: 330px;
     color: ${theme.secondaryTextColor};
     b {
       font-family: "Montserrat", sans-serif;
