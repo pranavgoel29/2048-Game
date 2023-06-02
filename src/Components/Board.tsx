@@ -86,17 +86,22 @@ const Board = (scoreSet: any) => {
   // Reset Game
   const resetGame = () => {
     let newGrid = cloneDeep(arrayGrid);
+    
     setGrid(newGrid);
     setGameWon(false);
     setGameLost(false);
+
+    // It will generate two random number and also set the score to 0.
     initialize(newGrid);
   };
 
   // - initialize
   const initialize = (newGrid) => {
+    // Setting the score to zero on initialization.
+    setGameScore(0);
+
     // newGrid = newGrid.map((row) => row.map(() => 0));
     // Clear the grid by setting all values to 0
-
     addNumber(newGrid);
     // console.log("run 1");
     addNumber(newGrid);
