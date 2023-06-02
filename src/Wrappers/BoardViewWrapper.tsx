@@ -3,12 +3,14 @@ import theme from "../styles/theme";
 
 export const BoardViewWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
+  padding-bottom: 40px;
   .gameLost {
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Montserrat", sans-serif;
     margin-top: 20px;
+    
     font-weight: 700;
     font-size: 24px;
     color: ${theme.gameLostColor};

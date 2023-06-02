@@ -10,7 +10,7 @@ const HomeWrapper = styled.div`
   
   font-family: "Montserrat", sans-serif;
   background: ${theme.backgroundColor};
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

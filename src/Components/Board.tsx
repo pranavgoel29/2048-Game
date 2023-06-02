@@ -39,7 +39,7 @@ const Block = ({ num }) => {
 };
 
 //  Size of the grid
-export const gridSize = 4;
+export const gridSize = 8;
 
 // Winning state/number of the Game
 export const winningNumber = 2048;
@@ -102,6 +102,21 @@ const Board = (scoreSet: any) => {
     updateScore();
   };
 
+
+  // To prevent the page from scrolling on arrow keys being pressed.
+  const keyPressedScroll = (e) => {
+    if (
+      [
+        KeyCodes.DOWN_ARROW,
+        KeyCodes.UP_ARROW,
+        KeyCodes.RIGHT_ARROW,
+        KeyCodes.LEFT_ARROW,
+      ].indexOf(e.keyCode) > -1
+    ) {
+      e.preventDefault();
+    }
+  };
+
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
   const keyPressed = async (e) => {
     let newGrid = cloneDeep(grid);
@@ -149,6 +164,8 @@ const Board = (scoreSet: any) => {
 
   // Listening to the 'keyup' event, using keyup instead of keydown as it will reduce the accidental clicks. And looping of clicks as well if someone holds down the key.
   useEvent("keyup", keyPressed);
+  // Scroll prevention
+  useEvent("keydown", keyPressedScroll);
 
   return (
     <BoardViewWrapper>
@@ -180,9 +197,9 @@ const Board = (scoreSet: any) => {
           </BoardWrapper>
 
           <p className="gameInstructions">
-            <b>HOW TO PLAY:</b> Use your <b>arrow keys (→, ←, ↑, ↓)</b> to move the tiles.
-            Tiles with the same number <b>merge into one</b> when they touch.
-            Add them up to reach
+            <b>HOW TO PLAY:</b> Use your <b>arrow keys (→, ←, ↑, ↓)</b> to move
+            the tiles. Tiles with the same number <b>merge into one</b> when
+            they touch. Add them up to reach
             <b> 2048!</b>
           </p>
         </>
