@@ -29,6 +29,7 @@ const BlockWrapper = styled.div`
 
   font-size: 24px;
   }
+  border-radius:5px;
   margin: 8px;
   display: flex;
   background: ${theme.cardBackgroundAccentColor};
