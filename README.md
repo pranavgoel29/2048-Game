@@ -48,6 +48,12 @@ I am trying to document how I progressed with the whole game development, attach
 
 <br>
 
+Seperated files/functions to make them easy to maintain. 😁
+Added color for different numbers.
+![Initial state with number coloured during developement](./screenshots/initial_state_developement_color.png)
+
+<br>
+
 ## 🐛Bug Reporting
 
 Feel free to [open an issue](https://github.com/pranavgoel29/2048-Game/issues) on GitHub if you find any bug.
