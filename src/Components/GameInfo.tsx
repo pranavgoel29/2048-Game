@@ -7,7 +7,7 @@ const GameInfo = () => {
   return (
     <>
       <div className="gameInfoSection">
-        <h1>2048 Game</h1>
+        <h1>2048</h1>
         <div className="scoreSection">
           <div className="scoreSectionCard">
             <p>Best: {gameScore}</p>

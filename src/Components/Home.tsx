@@ -24,6 +24,7 @@ const HomeWrapper = styled.div`
     margin: 40px 0px 20px 0px;
 
     h1 {
+      font-size: 3rem;
       font-family: "Montserrat", sans-serif;
     }
 
@@ -31,6 +32,7 @@ const HomeWrapper = styled.div`
       display: flex;
       flex-direction: column;
       gap: 8px;
+      text-align: center;
 
       .scoreSectionCard {
         padding: 8px;
