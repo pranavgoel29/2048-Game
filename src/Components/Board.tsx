@@ -195,7 +195,7 @@ const Board = () => {
   };
 
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
-  const keyPressed = (e) => {
+  const keyPressed = async (e) => {
     let newGrid = cloneDeep(grid);
 
     // let played = true;
