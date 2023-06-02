@@ -157,7 +157,7 @@ const Board = () => {
 
   const getRandomItem = (arr) => {
     // get random index value
-    const randomIndex = Math.floor(Math.random() * gridSize);
+    const randomIndex = Math.floor(Math.random() * arr.length);
     // get random item
     console.log(randomIndex);
     const item = arr[randomIndex];
