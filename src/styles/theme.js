@@ -23,6 +23,7 @@ const theme = {
 
     primaryColor: '#1D2939',
     secondaryColor: '#d2f5f9',
+    gameWonColor: '#ff9502',
     secondaryTextColor: '#788ca8',
    
     white: '#FFFFFF',

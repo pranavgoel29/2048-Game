@@ -1,9 +1,21 @@
-import { gridSize } from "../Components/Board";
+import { gridSize, winningNumber } from "../Components/Board";
 
 let gameScore: any = 0;
 
 const filterZero = async (row) => {
   return row.filter((num) => num != 0);
+};
+
+// Function to check if Game is won.
+export const isGameWon = (grid) => {
+  for (let c = 0; c < gridSize; c++) {
+    for (let r = 0; r < gridSize; r++) {
+      if (grid[c][r] === winningNumber) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 // - Swipes/moves - screenLeft, right, up, down
@@ -27,7 +39,6 @@ const slide = async (row) => {
 };
 
 const score = async () => {
-  console.log("Game Score: ",gameScore)
   return gameScore;
 };
 
@@ -90,4 +101,4 @@ const swipeRight = async (grid) => {
   return grid;
 };
 
-export { score,swipeLeft, swipeDown, swipeRight, swipeUp };
+export { score, swipeLeft, swipeDown, swipeRight, swipeUp };

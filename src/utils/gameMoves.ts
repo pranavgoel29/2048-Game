@@ -15,7 +15,7 @@ import { gridSize } from "../Components/Board";
     // get random index value
     const randomIndex = Math.floor(Math.random() * arr.length);
     // get random item
-    console.log(randomIndex);
+    
     const item = arr[randomIndex];
     return item;
   };

@@ -9,6 +9,7 @@ import { BlockWrapper } from "../Wrappers/BlockWrapper";
 
 import { addNumber, compareGrid } from "../utils/gameMoves";
 import {
+  isGameWon,
   score,
   swipeDown,
   swipeLeft,
@@ -22,9 +23,19 @@ const BoardWrapper = styled.div`
   width: max-content;
   margin: auto;
   display: flex;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 10px;
   border-radius: 12px;
+
+  .gameWon {
+    font-family: "Montserrat", sans-serif;
+    padding: 40px;
+    border-radius: 10px;
+    font-size: 34px;
+    font-weight: 700;
+    background: ${theme.gameWonColor};
+    color: ${theme.primaryColor};
+  }
 `;
 
 enum KeyCodes {
@@ -46,31 +57,38 @@ const Block = ({ num }) => {
 
 //  Size of the grid
 export const gridSize = 4;
+export const winningNumber = 2048;
 
 const Board = (scoreSet: any) => {
   const [gameScore, setGameScore] = useState(0);
 
   useEffect(() => {
     scoreSet.score(gameScore);
-    console.log("Board Score: ",gameScore)
   }, [gameScore]);
+
+  let localscore = 0;
+  const updateScore = async () => {
+    localscore = await score();
+    setGameScore(localscore);
+  };
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSize)
     .fill(0)
     .map(() => Array(gridSize).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
+  const [isWon, setGameWon] = useState(false);
 
   // Functions required
   // - initialize
   const initialize = () => {
     let newGrid = cloneDeep(grid);
-    // console.table(newGrid);
-    addNumber(newGrid);
-    console.log("run 1");
 
     addNumber(newGrid);
-    console.log("run 2");
+    // console.log("run 1");
+
+    addNumber(newGrid);
+    // console.log("run 2");
     // console.table(newGrid);
 
     setGrid(newGrid);
@@ -82,25 +100,23 @@ const Board = (scoreSet: any) => {
 
     // let played = true;
 
-    let localscore = 0;
-
-    if (e.keyCode == KeyCodes.DOWN_ARROW) {
+    if (e.keyCode == KeyCodes.DOWN_ARROW && !isWon) {
       console.log("Down");
       newGrid = await swipeDown(newGrid);
-      localscore = await score();
-      setGameScore(localscore);
-    } else if (e.keyCode == KeyCodes.UP_ARROW) {
+      setGameWon(isGameWon(newGrid));
+      updateScore();
+    } else if (e.keyCode == KeyCodes.UP_ARROW && !isWon) {
       newGrid = await swipeUp(newGrid);
-      localscore = await score();
-      setGameScore(localscore);
-    } else if (e.keyCode == KeyCodes.RIGHT_ARROW) {
+      setGameWon(isGameWon(newGrid));
+      updateScore();
+    } else if (e.keyCode == KeyCodes.RIGHT_ARROW && !isWon) {
       newGrid = await swipeRight(newGrid);
-      localscore = await score();
-      setGameScore(localscore);
-    } else if (e.keyCode == KeyCodes.LEFT_ARROW) {
+      setGameWon(isGameWon(newGrid));
+      updateScore();
+    } else if (e.keyCode == KeyCodes.LEFT_ARROW && !isWon) {
       newGrid = await swipeLeft(newGrid);
-      localscore = await score();
-      setGameScore(localscore);
+      setGameWon(isGameWon(newGrid));
+      updateScore();
     } else {
       // played = false;
     }
@@ -111,7 +127,7 @@ const Board = (scoreSet: any) => {
     let gridChanged = await compareGrid(past, newGrid);
 
     if (gridChanged) {
-      console.log("Grid Changed: ");
+      // console.log("Grid Changed: ");
       await addNumber(newGrid);
       setGrid(newGrid);
     }
@@ -128,17 +144,21 @@ const Board = (scoreSet: any) => {
 
   return (
     <BoardWrapper>
-      {grid.map((singleRow, index) => {
-        return (
-          <div key={index}>
-            <TileWrapper>
-              {singleRow.map((digit, digitIndex) => (
-                <Block num={digit} key={digitIndex} />
-              ))}
-            </TileWrapper>
-          </div>
-        );
-      })}
+      {!isWon ? (
+        grid.map((singleRow, index) => {
+          return (
+            <div key={index}>
+              <TileWrapper>
+                {singleRow.map((digit, digitIndex) => (
+                  <Block num={digit} key={digitIndex} />
+                ))}
+              </TileWrapper>
+            </div>
+          );
+        })
+      ) : (
+        <div className="gameWon">Game Won!</div>
+      )}
     </BoardWrapper>
   );
 };
