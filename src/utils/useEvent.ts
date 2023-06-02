@@ -5,7 +5,7 @@ export const useEvent = (event, handler, passive = false) => {
     // Initiate the event handler
     window.addEventListener(event, handler, passive);
 
-    // This will clean up the event every time the component is re-rendered
+    // This will clean up the event by removing the listener every time the component is re-rendered
     return function cleanup() {
       window.removeEventListener(event, handler);
     };
