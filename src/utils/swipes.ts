@@ -1,4 +1,4 @@
-import { gridSize } from "./Board";
+import { gridSize } from "../Components/Board";
 
 const filterZero = async (row) => {
   return row.filter((num) => num != 0);

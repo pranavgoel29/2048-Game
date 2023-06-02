@@ -1,4 +1,4 @@
-import { gridSize } from "./Board";
+import { gridSize } from "../Components/Board";
 
  export const compareGrid = async (a, b) => {
     for (let i = 0; i < gridSize; i++) {

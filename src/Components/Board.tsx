@@ -7,8 +7,8 @@ import { useEvent } from "../utils/useEvent";
 import { TileWrapper } from "../Wrappers/TileWrapper";
 import { BlockWrapper } from "../Wrappers/BlockWrapper";
 
-import { addNumber, compareGrid } from './gameMoves';
-import { swipeDown, swipeLeft, swipeRight, swipeUp } from "./swipes";
+import { addNumber, compareGrid } from '../utils/gameMoves';
+import { swipeDown, swipeLeft, swipeRight, swipeUp } from "../utils/swipes";
 
 const BoardWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
