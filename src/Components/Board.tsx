@@ -110,11 +110,13 @@ const Board = () => {
     <BoardWrapper>
       {grid.map((singleRow, index) => {
         return (
+          <div key={index}>
           <TileWrapper>
             {singleRow.map((digit, digitIndex) => (
               <Block num={digit} key={digitIndex} />
             ))}
           </TileWrapper>
+          </div>
         );
       })}
     </BoardWrapper>
