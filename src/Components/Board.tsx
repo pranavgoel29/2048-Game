@@ -21,13 +21,17 @@ const BlockWrapper = styled.div`
   height: 80px;
   width: 80px;
   border-radius: 5px;
-  font-weight: 700;}
+  font-weight: 700;
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 24px;
+  }
   margin: 8px;
   display: flex;
   background: ${theme.cardBackgroundAccentColor};
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
+  
   color: ${theme.secondaryColor};
 `;
 
