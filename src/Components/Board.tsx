@@ -32,6 +32,17 @@ const BoardViewWrapper = styled.div`
     font-size: 24px;
     color: ${theme.gameLostColor};
   }
+
+  .gameInstructions {
+    font-family: "Montserrat", sans-serif;
+    margin-top: 40px;
+    font-size: 20px;
+    max-width: 400px;
+    color: ${theme.secondaryTextColor};
+    b {
+      font-family: "Montserrat", sans-serif;
+    }
+  }
 `;
 
 enum KeyCodes {
@@ -66,7 +77,6 @@ const Board = (scoreSet: any) => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
-
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSize)
     .fill(0)
@@ -84,11 +94,10 @@ const Board = (scoreSet: any) => {
     setGameScore(localscore);
   };
 
-
   // Reset Game
   const resetGame = () => {
     let newGrid = cloneDeep(arrayGrid);
-    
+
     setGrid(newGrid);
     setGameWon(false);
     setGameLost(false);
@@ -111,7 +120,6 @@ const Board = (scoreSet: any) => {
     // console.table(newGrid);
     setGrid(newGrid);
   };
-
 
   // Function to check all the states of the game, and updating the score as well.
   const operationState = (newGrid) => {
@@ -157,7 +165,6 @@ const Board = (scoreSet: any) => {
 
   // - Reset and Won state
 
-
   // Initialization useEffect, used to run initialize on mount.
   useEffect(() => {
     console.log("Initialize");
@@ -195,6 +202,13 @@ const Board = (scoreSet: any) => {
               );
             })}
           </BoardWrapper>
+
+          <p className="gameInstructions">
+            <b>HOW TO PLAY:</b> Use your <b>arrow keys (→, ←, ↑, ↓)</b> to move the tiles.
+            Tiles with the same number <b>merge into one</b> when they touch.
+            Add them up to reach
+            <b> 2048!</b>
+          </p>
         </>
       ) : (
         <>
