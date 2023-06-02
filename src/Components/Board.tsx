@@ -44,7 +44,9 @@ enum KeyCodes {
 const Block = ({ num }) => {
   return (
     <BlockWrapper>
+      {/* Adding classes to the divs of blocks/tiles to have appropriate colors. */}
       <div className={`tile ${num <= 4096 ? "x" + num : "x8192"}`}>
+        {/* Not displaying any when the digit is zero */}
         {num !== 0 ? num : ""}
       </div>
     </BlockWrapper>
@@ -62,11 +64,6 @@ const Board = (scoreSet: any) => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
-  let localscore = 0;
-  const updateScore = async () => {
-    localscore = await score();
-    setGameScore(localscore);
-  };
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSize)
@@ -77,6 +74,14 @@ const Board = (scoreSet: any) => {
   const [isLost, setGameLost] = useState(false);
 
   // Functions required
+
+  // Function to update the Score state.
+  let localscore = 0;
+  const updateScore = async () => {
+    localscore = await score();
+    setGameScore(localscore);
+  };
+
 
   // Reset Game
   const resetGame = () => {
@@ -90,17 +95,22 @@ const Board = (scoreSet: any) => {
   // - initialize
   const initialize = (newGrid) => {
     // newGrid = newGrid.map((row) => row.map(() => 0));
-
     // Clear the grid by setting all values to 0
 
     addNumber(newGrid);
     // console.log("run 1");
-
     addNumber(newGrid);
     // console.log("run 2");
     // console.table(newGrid);
-
     setGrid(newGrid);
+  };
+
+
+  // Function to check all the states of the game, and updating the score as well.
+  const operationState = (newGrid) => {
+    setGameWon(isGameWon(newGrid));
+    setGameLost(isGameLost(newGrid));
+    updateScore();
   };
 
   // Key Pressed, lisening to a key being pressed and making a move accordingly.
@@ -112,24 +122,16 @@ const Board = (scoreSet: any) => {
     if (e.keyCode == KeyCodes.DOWN_ARROW && !isWon) {
       console.log("Down");
       newGrid = await swipeDown(newGrid);
-      setGameWon(isGameWon(newGrid));
-      setGameLost(isGameLost(newGrid));
-      updateScore();
+      operationState(newGrid);
     } else if (e.keyCode == KeyCodes.UP_ARROW && !isWon) {
       newGrid = await swipeUp(newGrid);
-      setGameWon(isGameWon(newGrid));
-      setGameLost(isGameLost(newGrid));
-      updateScore();
+      operationState(newGrid);
     } else if (e.keyCode == KeyCodes.RIGHT_ARROW && !isWon) {
       newGrid = await swipeRight(newGrid);
-      setGameWon(isGameWon(newGrid));
-      setGameLost(isGameLost(newGrid));
-      updateScore();
+      operationState(newGrid);
     } else if (e.keyCode == KeyCodes.LEFT_ARROW && !isWon) {
       newGrid = await swipeLeft(newGrid);
-      setGameWon(isGameWon(newGrid));
-      setGameLost(isGameLost(newGrid));
-      updateScore();
+      operationState(newGrid);
     } else {
       // played = false;
     }
@@ -148,12 +150,15 @@ const Board = (scoreSet: any) => {
 
   // - Reset and Won state
 
+
+  // Initialization useEffect, used to run initialize on mount.
   useEffect(() => {
     console.log("Initialize");
     initialize(cloneDeep(grid));
   }, []);
 
-  useEvent("keydown", keyPressed);
+  // Listening to the 'keyup' event, using keyup instead of keydown as it will reduce the accidental clicks. And looping of clicks as well if someone holds down the key.
+  useEvent("keyup", keyPressed);
 
   return (
     <BoardViewWrapper>
