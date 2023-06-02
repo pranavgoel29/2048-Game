@@ -27,10 +27,12 @@ export const isGameLost = (grid) => {
       if (grid[c][r] === 0) {
         return false;
       }
+      // It checks if the current cell's value is equal to the value of the cell below it (in the same column)
       if (c !== gridSize - 1 && grid[c][r] === grid[c + 1][r]) {
         return false;
       }
-      if (c !== gridSize - 1 && grid[c][r] === grid[c][r + 1]) {
+      // It checks if the current cell's value is equal to the value of the cell to its right (in the same row)
+      if (r !== gridSize - 1 && grid[c][r] === grid[c][r + 1]) {
         return false;
       }
     }
@@ -119,7 +121,6 @@ const swipeLeft = async (grid) => {
 
   return grid;
 };
-
 
 // Doing reverse of rows first before passing them to slide and again reversing them after slide, other than this same as the slideLeft().
 const swipeRight = async (grid) => {
