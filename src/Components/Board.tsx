@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import cloneDeep from "lodash.clonedeep";
 import { useEvent } from "../utils/useEvent";
 
-import { TileWrapper } from "../Wrappers/TileWrapper";
-import { BlockWrapper } from "../Wrappers/BlockWrapper";
+
 import ButtonWrapper from "../Wrappers/ButtonWrapper";
 
 import { addNumber, compareGrid } from "../utils/gameMoves";
@@ -19,6 +18,7 @@ import {
 } from "../utils/swipes";
 import { BoardWrapper } from "../Wrappers/BoardWrapper";
 import { BoardViewWrapper } from "../Wrappers/BoardViewWrapper";
+import Block from "./Block";
 
 enum KeyCodes {
   UP_ARROW = 38,
@@ -27,17 +27,7 @@ enum KeyCodes {
   RIGHT_ARROW = 39,
 }
 
-const Block = ({ num }) => {
-  return (
-    <BlockWrapper>
-      {/* Adding classes to the divs of blocks/tiles to have appropriate colors. */}
-      <div className={`tile ${num <= 4096 ? "x" + num : "x8192"}`}>
-        {/* Not displaying any when the digit is zero */}
-        {num !== 0 ? num : ""}
-      </div>
-    </BlockWrapper>
-  );
-};
+
 
 //  Size of the grid
 export const gridSize = 4;
@@ -72,14 +62,13 @@ const Board = (scoreSet: any) => {
   // Reset Game
   const resetGame = () => {
     let newGrid = cloneDeep(arrayGrid);
-    
+
     setGrid([...newGrid]);
     setGameWon(false);
     setGameLost(false);
 
-
     // Setting score variable to zero in the utils file.
-    setScoreToZero()
+    setScoreToZero();
     setGameScore(0);
 
     // It will generate two random number and also set the score to 0.
@@ -88,7 +77,6 @@ const Board = (scoreSet: any) => {
 
   // - initialize
   const initialize = (newGrid) => {
-
     // newGrid = newGrid.map((row) => row.map(() => 0));
     // Clear the grid by setting all values to 0
     addNumber(newGrid);
@@ -189,11 +177,9 @@ const Board = (scoreSet: any) => {
             {grid.map((singleRow, index) => {
               return (
                 <div key={index}>
-                  <TileWrapper>
-                    {singleRow.map((digit, digitIndex) => (
-                      <Block num={digit} key={digitIndex} />
-                    ))}
-                  </TileWrapper>
+                  {singleRow.map((digit, digitIndex) => (
+                    <Block num={digit} key={digitIndex} />
+                  ))}
                 </div>
               );
             })}
