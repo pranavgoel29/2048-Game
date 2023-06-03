@@ -32,7 +32,7 @@ Used 'lodash.clonedeep' for deep cloning the matrix.
 
 <br>
 
-### To change the Grid size and ending state, update the following in `Board.tsx`
+### To change the Grid size and ending state, update the following in [Board.tsx](./src//Components/Board.tsx)
 
 ```javascript
 gridSize //Changes size of the grid
