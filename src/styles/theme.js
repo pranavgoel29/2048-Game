@@ -14,6 +14,7 @@ const theme = {
     secondaryColor: '#d2f5f9',
     gameWonColor: '#89ceff',
     secondaryTextColor: '#788ca8',
+    footerTextColor: '#92abce',
    
     white: '#FFFFFF',
    

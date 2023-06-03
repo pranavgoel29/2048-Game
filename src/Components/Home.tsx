@@ -7,13 +7,31 @@ import GameInfo from "./GameInfo";
 import { useState } from "react";
 
 const HomeWrapper = styled.div`
-  
   font-family: "Montserrat", sans-serif;
   background: ${theme.backgroundColor};
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .footerSection {
+    display: flex;
+    padding-bottom: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p,
+    a {
+      font-size: 18px;
+      font-weight: 600;
+      color: ${theme.footerTextColor};
+      font-family: "Montserrat", sans-serif;
+    }
+
+    a: hover {
+      color: ${theme.secondaryColor};
+    }
+  }
 
   .gameInfoSection {
     display: flex;
@@ -76,6 +94,26 @@ const Home = () => {
     <HomeWrapper>
       <GameInfo currentScore={gameScore} bestScore={bestScore} />
       <Board score={setGameScoreHome} />
+      <footer className="footerSection">
+        <p>
+          Made with love by{" "}
+          <a
+            className="footer-name"
+            target="_blank"
+            href="https://github.com/pranavgoel29"
+          >
+            Pranav Goel
+          </a>
+        </p>
+
+        <a
+          href="https://github.com/pranavgoel29/2048-Game"
+          target="_blank"
+          className="github-link"
+        >
+          Github Repo
+        </a>
+      </footer>
     </HomeWrapper>
   );
 };
