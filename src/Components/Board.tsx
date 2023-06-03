@@ -17,7 +17,7 @@ import {
   swipeRight,
   swipeUp,
 } from "../utils/swipes";
-import { BoardWrapper } from "./BoardWrapper";
+import { BoardWrapper } from "../Wrappers/BoardWrapper";
 import { BoardViewWrapper } from "../Wrappers/BoardViewWrapper";
 
 enum KeyCodes {
