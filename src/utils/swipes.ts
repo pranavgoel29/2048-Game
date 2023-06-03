@@ -37,6 +37,7 @@ export const isGameLost = (grid) => {
       }
     }
   }
+  gameScore = 0;
   return true;
 };
 
@@ -71,8 +72,12 @@ const slide = async (row) => {
 };
 
 // Function to return the gameScore variable.
-const score = async () => {
+const score = () => {
   return gameScore;
+};
+
+const setScoreToZero = () => {
+  gameScore = 0;
 };
 
 const swipeUp = async (grid) => {
@@ -142,4 +147,4 @@ const swipeRight = async (grid) => {
   return grid;
 };
 
-export { score, swipeLeft, swipeDown, swipeRight, swipeUp };
+export { score, setScoreToZero, swipeLeft, swipeDown, swipeRight, swipeUp };

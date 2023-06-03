@@ -11,6 +11,7 @@ import {
   isGameLost,
   isGameWon,
   score,
+  setScoreToZero,
   swipeDown,
   swipeLeft,
   swipeRight,
@@ -71,10 +72,15 @@ const Board = (scoreSet: any) => {
   // Reset Game
   const resetGame = () => {
     let newGrid = cloneDeep(arrayGrid);
-
-    setGrid(newGrid);
+    
+    setGrid([...newGrid]);
     setGameWon(false);
     setGameLost(false);
+
+
+    // Setting score variable to zero in the utils file.
+    setScoreToZero()
+    setGameScore(0);
 
     // It will generate two random number and also set the score to 0.
     initialize(newGrid);
@@ -82,8 +88,6 @@ const Board = (scoreSet: any) => {
 
   // - initialize
   const initialize = (newGrid) => {
-    // Setting the score to zero on initialization.
-    setGameScore(0);
 
     // newGrid = newGrid.map((row) => row.map(() => 0));
     // Clear the grid by setting all values to 0
@@ -101,7 +105,6 @@ const Board = (scoreSet: any) => {
     setGameLost(isGameLost(newGrid));
     updateScore();
   };
-
 
   // To prevent the page from scrolling on arrow keys being pressed.
   const keyPressedScroll = (e) => {
