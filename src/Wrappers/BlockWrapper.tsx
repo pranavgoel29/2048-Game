@@ -3,15 +3,13 @@ import theme from "../styles/theme";
 
  const BlockWrapper = styled.div`
   font-family: "Montserrat", sans-serif;
-
   border-radius: 5px;
-  margin: 8px;
   display: flex;
-  background: ${theme.cardBackgroundAccentColor};
-
   color: ${theme.secondaryColor};
 
   .tile {
+    background: ${theme.cardBackgroundAccentColor};
+    margin: 5px;
     font-family: "Montserrat", sans-serif;
     height: 60px;
     width: 60px;
