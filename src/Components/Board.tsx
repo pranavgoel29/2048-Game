@@ -206,7 +206,7 @@ const Board = (scoreSet: any) => {
             })}
           </BoardWrapper>
 
-          {showContent ? (
+          {!showContent ? (
             <ControlButtonsWrapper>
               <button
                 className="play-button"
