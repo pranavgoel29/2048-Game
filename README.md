@@ -55,6 +55,7 @@ I am documenting how I progressed with the whole game development, attaching scr
 
 
 <blockquote><b><i>Adding Operation in one-direction, combined with swipe.</i></b></blockquote>
+
 <img src="https://raw.githubusercontent.com/pranavgoel29/2048-game/main/screenshots/Adding_operation.gif" alt="Adding Operation" width="100%" height="100%" loop=infinite>
 
 <br>
@@ -82,6 +83,17 @@ Added color for different numbers.</i></b></blockquote>
 <b>Completed View! 🥳</b>
 
 ![Added new game button](./screenshots/completed_view.png)
+
+
+<br>
+
+<blockquote><b><i>Added game control buttons for phones view.<i></b></blockquote>
+&nbsp;
+
+![Added game control buttons for phone](./screenshots/Added_button_for_phones.png)
+
+<br>
+
 
 <br>
 
