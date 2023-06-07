@@ -37,7 +37,6 @@ export const isGameLost = (grid) => {
       }
     }
   }
-  gameScore = 0;
   return true;
 };
 
