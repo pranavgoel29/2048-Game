@@ -34,6 +34,8 @@ Used 'lodash.clonedeep' for deep cloning the matrix.
 
 ### To change the Grid size and ending state, update the following in [Board.tsx](./src//Components/Board.tsx)
 
+They are inside a enum `GameVariablesGrid`
+
 ```javascript
 gridSize //Changes size of the grid
 winningNumber  // Winning state/number of the Game

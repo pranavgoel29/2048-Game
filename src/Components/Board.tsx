@@ -28,11 +28,13 @@ enum KeyCodes {
   RIGHT_ARROW = 39,
 }
 
-//  Size of the grid
-export const gridSize = 4;
-
-// Winning state/number of the Game
-export const winningNumber = 2048;
+export enum GameVariablesGrid {
+  //  Size of the grid
+  gridSize = 4,
+  // Winning state/number of the Game
+  winningNumber = 2048,
+  twoAppearancePercentage = 0.7,
+}
 
 const Board = (scoreSet: any) => {
   const [gameScore, setGameScore] = useState(0);
@@ -64,9 +66,9 @@ const Board = (scoreSet: any) => {
   }, [gameScore]);
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
-  let arrayGrid = Array(gridSize)
+  let arrayGrid = Array(GameVariablesGrid.gridSize)
     .fill(0)
-    .map(() => Array(gridSize).fill(0));
+    .map(() => Array(GameVariablesGrid.gridSize).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
   const [isWon, setGameWon] = useState(false);
   const [isLost, setGameLost] = useState(false);
