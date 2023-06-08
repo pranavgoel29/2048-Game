@@ -2,7 +2,7 @@ import React from "react";
 
 const GameInfo = (gameScore: any) => {
   return (
-    <nav className="gameInfoSection">
+    <header className="gameInfoSection">
       <h1>2048</h1>
       <div className="scoreSection">
         <div className="scoreSectionCard">
@@ -12,7 +12,7 @@ const GameInfo = (gameScore: any) => {
           <p>Best: {gameScore.bestScore}</p>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 
