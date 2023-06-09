@@ -145,7 +145,7 @@ This command will start the Vite development server and compile your React app.
 - Game lost and won status to show on the grid with translucent effect.
 - Making the size of the grid dynamic. (Take input from the player)
     
-    - <b>Formula -></b> 2 <sup> (Grid Size/2)</sup> + 3
+    -> <b>Formula -></b> 2 <sup> (Grid Size/2)</sup> + 3
 
 <br>
 
