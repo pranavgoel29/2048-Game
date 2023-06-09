@@ -147,6 +147,8 @@ This command will start the Vite development server and compile your React app.
     
     - <b>Formula -></b> 2 <sup> (Grid Size/2) + 3</sup>
 
+- Track moves taken by people to win a particular game. (This is just a thought)
+
 <br>
 
 ## 🐛Bug Reporting
