@@ -141,6 +141,7 @@ This command will start the Vite development server and compile your React app.
 
 ## Future Goals
 - Add Controls for mobile.
+- Making the size of the grid dynamic (Take input from the player)
 
 <br>
 
