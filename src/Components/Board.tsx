@@ -113,7 +113,7 @@ const Board = (scoreSet: any) => {
   // Function to check all the states of the game, and updating the score as well.
   const operationState = (newGrid) => {
     setGameWon(isGameWon(newGrid));
-    setGameLost(isGameLost(newGrid));
+   
     updateScore();
   };
 
@@ -165,6 +165,7 @@ const Board = (scoreSet: any) => {
       // console.log("Grid Changed: ");
       await addNumber(newGrid);
       setGrid(newGrid);
+      setGameLost(isGameLost(newGrid));
     }
   };
 
