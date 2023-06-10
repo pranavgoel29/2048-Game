@@ -116,7 +116,7 @@ const Board = (scoreSet: any) => {
 
     // Comparing Keycodes, assuming only arrows keys are pressed.
     if (e.keyCode == KeyCodes.DOWN_ARROW && !isWon) {
-      console.log("Down");
+      // console.log("Down");
       newGrid = await swipeDown(newGrid);
       operationState(newGrid);
     } else if (e.keyCode == KeyCodes.UP_ARROW && !isWon) {
