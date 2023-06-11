@@ -1,7 +1,8 @@
 import { GameVariablesGrid } from "../Components/Board";
+import { gridType } from "./swipes";
 
 // Function to compare 2 grids and return 'false' if they are 'same' and 'true' if they are 'not'.
- export const compareGrid = async (a, b) => {
+ export const compareGrid = async (a: gridType, b: gridType) => {
     for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
       for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
         if (a[i][j] !== b[i][j]) {
@@ -12,7 +13,7 @@ import { GameVariablesGrid } from "../Components/Board";
     return false;
   };
 
-  export const getRandomItem = (arr) => {
+  export const getRandomItem = (arr: { x: number; y: number }[]) => {
     // get random index value
     const randomIndex = Math.floor(Math.random() * arr.length);
     // get random item
@@ -22,7 +23,7 @@ import { GameVariablesGrid } from "../Components/Board";
   };
 
   // - add number -  add a new item to the grid
-  export const addNumber = async (newGrid) => {
+  export const addNumber = async (newGrid: gridType) => {
     // It should pick a random location on the grid having 0 and put 2 or 4 there instead.
 
     // We can first check if the grid is full or not and are there any spots having 0.

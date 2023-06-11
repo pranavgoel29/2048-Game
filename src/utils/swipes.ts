@@ -1,15 +1,16 @@
 import { GameVariablesGrid } from "../Components/Board";
 
-let gameScore: any = 0;
+let gameScore: number = 0;
+export type gridType = number[][];
 
 // Function to remove all the zeroes from the given row.
 // e.g. -> [2,0,2,4]; will be changed to, [2,2,4]
-const filterZero = async (row) => {
+const filterZero = async (row: number[]) => {
   return row.filter((num) => num != 0);
 };
 
 // Function to check if Game is won. Just check if the array has winning variable value and if it does return true.
-export const isGameWon = (grid) => {
+export const isGameWon = (grid: gridType) => {
   for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       if (grid[c][r] === GameVariablesGrid.winningNumber) {
@@ -21,7 +22,7 @@ export const isGameWon = (grid) => {
 };
 
 // Check if Game lost
-export const isGameLost = (grid) => {
+export const isGameLost = (grid: gridType) => {
   for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       if (grid[c][r] === 0) {
@@ -41,11 +42,11 @@ export const isGameLost = (grid) => {
 };
 
 // - Swipes/moves - screenLeft, right, up, down
-const slide = async (row) => {
+const slide = async (row: number[]) => {
   // Removing all the zeroes.
   row = await filterZero(row);
 
-  console.log("row length: ", row.length);
+  // console.log("row length: ", row.length);
 
   // Running the loop till row.length -1 as we don't have to do anything when there is only one element.
   for (let i = 0; i < row.length - 1; i++) {
@@ -79,7 +80,7 @@ const setScoreToZero = () => {
   gameScore = 0;
 };
 
-const swipeUp = async (grid) => {
+const swipeUp = async (grid: gridType) => {
   for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
     let row = grid[r];
     row = await slide(row);
@@ -90,7 +91,7 @@ const swipeUp = async (grid) => {
 };
 
 // Just reverse of Up function.
-const swipeDown = async (grid) => {
+const swipeDown = async (grid: gridType) => {
   for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
     let row = grid[r];
     row.reverse();
@@ -103,7 +104,7 @@ const swipeDown = async (grid) => {
 };
 
 // Here we have to do the tanspose.
-const swipeLeft = async (grid) => {
+const swipeLeft = async (grid: gridType) => {
   for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     let row: number[] = [];
 
@@ -113,7 +114,7 @@ const swipeLeft = async (grid) => {
       row.push(grid[r][c]);
     }
 
-    console.log("Left swipe row: ", row);
+    // console.log("Left swipe row: ", row);
 
     row = await slide(row);
 
@@ -127,7 +128,7 @@ const swipeLeft = async (grid) => {
 };
 
 // Doing reverse of rows first before passing them to slide and again reversing them after slide, other than this same as the slideLeft().
-const swipeRight = async (grid) => {
+const swipeRight = async (grid: gridType) => {
   for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     let row: number[] = [];
     for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
