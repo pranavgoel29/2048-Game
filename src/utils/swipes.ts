@@ -1,4 +1,4 @@
-import { gridSize, winningNumber } from "../Components/Board";
+import { GameVariablesGrid } from "../Components/Board";
 
 let gameScore: number = 0;
 export type gridType = number[][];
@@ -11,9 +11,9 @@ const filterZero = async (row: number[]) => {
 
 // Function to check if Game is won. Just check if the array has winning variable value and if it does return true.
 export const isGameWon = (grid: gridType) => {
-  for (let c = 0; c < gridSize; c++) {
-    for (let r = 0; r < gridSize; r++) {
-      if (grid[c][r] === winningNumber) {
+  for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
+      if (grid[c][r] === GameVariablesGrid.winningNumber) {
         return true;
       }
     }
@@ -23,22 +23,21 @@ export const isGameWon = (grid: gridType) => {
 
 // Check if Game lost
 export const isGameLost = (grid: gridType) => {
-  for (let c = 0; c < gridSize; c++) {
-    for (let r = 0; r < gridSize; r++) {
+  for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       if (grid[c][r] === 0) {
         return false;
       }
       // It checks if the current cell's value is equal to the value of the cell below it (in the same column)
-      if (c !== gridSize - 1 && grid[c][r] === grid[c + 1][r]) {
+      if (c !== GameVariablesGrid.gridSize - 1 && grid[c][r] === grid[c + 1][r]) {
         return false;
       }
       // It checks if the current cell's value is equal to the value of the cell to its right (in the same row)
-      if (r !== gridSize - 1 && grid[c][r] === grid[c][r + 1]) {
+      if (r !== GameVariablesGrid.gridSize - 1 && grid[c][r] === grid[c][r + 1]) {
         return false;
       }
     }
   }
-  gameScore = 0;
   return true;
 };
 
@@ -65,7 +64,7 @@ const slide = async (row: number[]) => {
   row = await filterZero(row);
 
   // Adding zeroes in-place of empty space according to the 'gridSize'.
-  while (row.length < gridSize) {
+  while (row.length < GameVariablesGrid.gridSize) {
     row.push(0);
   }
 
@@ -82,7 +81,7 @@ const setScoreToZero = () => {
 };
 
 const swipeUp = async (grid: gridType) => {
-  for (let r = 0; r < gridSize; r++) {
+  for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
     let row = grid[r];
     row = await slide(row);
     grid[r] = row;
@@ -93,7 +92,7 @@ const swipeUp = async (grid: gridType) => {
 
 // Just reverse of Up function.
 const swipeDown = async (grid: gridType) => {
-  for (let r = 0; r < gridSize; r++) {
+  for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
     let row = grid[r];
     row.reverse();
     row = await slide(row);
@@ -106,11 +105,11 @@ const swipeDown = async (grid: gridType) => {
 
 // Here we have to do the tanspose.
 const swipeLeft = async (grid: gridType) => {
-  for (let c = 0; c < gridSize; c++) {
+  for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     let row: number[] = [];
 
     // Transposing on row at a time.
-    for (let r = 0; r < gridSize; r++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       // let row = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
       row.push(grid[r][c]);
     }
@@ -120,7 +119,7 @@ const swipeLeft = async (grid: gridType) => {
     row = await slide(row);
 
     // Transposing again to return it to it's original form.
-    for (let r = 0; r < gridSize; r++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       grid[r][c] = row[r];
     }
   }
@@ -130,9 +129,9 @@ const swipeLeft = async (grid: gridType) => {
 
 // Doing reverse of rows first before passing them to slide and again reversing them after slide, other than this same as the slideLeft().
 const swipeRight = async (grid: gridType) => {
-  for (let c = 0; c < gridSize; c++) {
+  for (let c = 0; c < GameVariablesGrid.gridSize; c++) {
     let row: number[] = [];
-    for (let r = 0; r < gridSize; r++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       row.push(grid[r][c]);
     }
 
@@ -140,7 +139,7 @@ const swipeRight = async (grid: gridType) => {
     row = await slide(row);
     row.reverse();
 
-    for (let r = 0; r < gridSize; r++) {
+    for (let r = 0; r < GameVariablesGrid.gridSize; r++) {
       grid[r][c] = row[r];
     }
   }

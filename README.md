@@ -34,6 +34,8 @@ Used 'lodash.clonedeep' for deep cloning the matrix.
 
 ### To change the Grid size and ending state, update the following in [Board.tsx](./src//Components/Board.tsx)
 
+They are inside a enum `GameVariablesGrid`
+
 ```javascript
 gridSize //Changes size of the grid
 winningNumber  // Winning state/number of the Game
@@ -55,6 +57,7 @@ I am documenting how I progressed with the whole game development, attaching scr
 
 
 <blockquote><b><i>Adding Operation in one-direction, combined with swipe.</i></b></blockquote>
+
 <img src="https://raw.githubusercontent.com/pranavgoel29/2048-game/main/screenshots/Adding_operation.gif" alt="Adding Operation" width="100%" height="100%" loop=infinite>
 
 <br>
@@ -82,6 +85,17 @@ Added color for different numbers.</i></b></blockquote>
 <b>Completed View! 🥳</b>
 
 ![Added new game button](./screenshots/completed_view.png)
+
+
+<br>
+
+<blockquote><b><i>Added game control buttons for phones view.<i></b></blockquote>
+&nbsp;
+
+![Added game control buttons for phone](./screenshots/Added_button_for_phones.png)
+
+<br>
+
 
 <br>
 
@@ -126,7 +140,14 @@ This command will start the Vite development server and compile your React app.
 
 
 ## Future Goals
-- Add Controls for mobile.
+- Add Controls for mobile. (Touch swipes)
+- Add animations for the moves.
+- Game lost and won status to show on the grid with translucent effect.
+- Making the size of the grid dynamic. (Take input from the player)
+    
+    - <b>Formula -></b> 2 <sup> (Grid Size/2) + 3</sup>
+
+- Track moves taken by people to win a particular game. (This is just a thought)
 
 <br>
 

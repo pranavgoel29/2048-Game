@@ -1,10 +1,10 @@
-import { gridSize } from "../Components/Board";
+import { GameVariablesGrid } from "../Components/Board";
 import { gridType } from "./swipes";
 
 // Function to compare 2 grids and return 'false' if they are 'same' and 'true' if they are 'not'.
  export const compareGrid = async (a: gridType, b: gridType) => {
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
+    for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
+      for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
         if (a[i][j] !== b[i][j]) {
           return true;
         }
@@ -31,8 +31,8 @@ import { gridType } from "./swipes";
     // Defining type of string array object.
     let options: { x: number; y: number }[] = []; // Array to store the spots having 0.
 
-    for (let i = 0; i < gridSize; i++) {
-      for (let j = 0; j < gridSize; j++) {
+    for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
+      for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
         if (newGrid[i][j] === 0) {
           options.push({ x: i, y: j });
         }
@@ -43,6 +43,6 @@ import { gridType } from "./swipes";
       let spot = getRandomItem(options);
 
       // 2 has 70% probabilty and 4 has 30% according to the below function.
-      newGrid[spot.x][spot.y] = Math.random() <= 0.7 ? 2 : 4;
+      newGrid[spot.x][spot.y] = Math.random() <= GameVariablesGrid.twoAppearancePercentage ? 2 : 4;
     }
   };

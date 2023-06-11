@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import cloneDeep from "lodash.clonedeep";
 import { useEvent } from "../utils/useEvent";
 
-
 import ButtonWrapper from "../Wrappers/ButtonWrapper";
 
 import { addNumber, compareGrid } from "../utils/gameMoves";
@@ -19,6 +18,8 @@ import {
 import { BoardWrapper } from "../Wrappers/BoardWrapper";
 import { BoardViewWrapper } from "../Wrappers/BoardViewWrapper";
 import Block from "./Block";
+import ControlButtonsWrapper from "../Wrappers/ControlButtonsWrapper";
+import { breakpoints } from "../styles/Breakpoints";
 
 enum KeyCodes {
   UP_ARROW = 38,
@@ -27,25 +28,47 @@ enum KeyCodes {
   RIGHT_ARROW = 39,
 }
 
-
-
-//  Size of the grid
-export const gridSize = 4;
-
-// Winning state/number of the Game
-export const winningNumber = 2048;
+export enum GameVariablesGrid {
+  //  Size of the grid
+  gridSize = 4,
+  // Winning state/number of the Game
+  winningNumber = 2048,
+  twoAppearancePercentage = 0.7,
+}
 
 const Board = (scoreSet: any) => {
   const [gameScore, setGameScore] = useState(0);
 
+  const [showContent, setShowContent] = useState(false);
+
+  // Effect to detect the screen size change and show particular content accordingly
+  useEffect(() => {
+    const handleResize = () => {
+      setShowContent(window.innerWidth >= breakpoints.sm);
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+
+  // Effect to detect score and set it.
   useEffect(() => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
   // Generating a 2D array of 'gridSize' will '0' as fill.
-  let arrayGrid = Array(gridSize)
+  let arrayGrid = Array(GameVariablesGrid.gridSize)
     .fill(0)
-    .map(() => Array(gridSize).fill(0));
+    .map(() => Array(GameVariablesGrid.gridSize).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
   const [isWon, setGameWon] = useState(false);
   const [isLost, setGameLost] = useState(false);
@@ -90,7 +113,7 @@ const Board = (scoreSet: any) => {
   // Function to check all the states of the game, and updating the score as well.
   const operationState = (newGrid) => {
     setGameWon(isGameWon(newGrid));
-    setGameLost(isGameLost(newGrid));
+   
     updateScore();
   };
 
@@ -142,6 +165,7 @@ const Board = (scoreSet: any) => {
       // console.log("Grid Changed: ");
       await addNumber(newGrid);
       setGrid(newGrid);
+      setGameLost(isGameLost(newGrid));
     }
   };
 
@@ -184,6 +208,37 @@ const Board = (scoreSet: any) => {
               );
             })}
           </BoardWrapper>
+
+          {!showContent ? (
+            <ControlButtonsWrapper>
+              <button
+                className="play-button"
+                onClick={() => keyPressed({ keyCode: KeyCodes.UP_ARROW })}
+              >
+                Up
+              </button>
+              <div className="controlButtomBottomRow">
+                <button
+                  className="play-button"
+                  onClick={() => keyPressed({ keyCode: KeyCodes.LEFT_ARROW })}
+                >
+                  Left
+                </button>
+                <button
+                  className="play-button"
+                  onClick={() => keyPressed({ keyCode: KeyCodes.DOWN_ARROW })}
+                >
+                  Down
+                </button>
+                <button
+                  className="play-button"
+                  onClick={() => keyPressed({ keyCode: KeyCodes.RIGHT_ARROW })}
+                >
+                  Right
+                </button>
+              </div>
+            </ControlButtonsWrapper>
+          ) : null}
 
           <p className="gameInstructions">
             <b>HOW TO PLAY:</b> Use your <b>arrow keys (→, ←, ↑, ↓)</b> to move
