@@ -2,9 +2,9 @@ import { GameVariablesGrid } from "../Components/Board";
 import { gridType } from "./swipes";
 
 // Function to compare 2 grids and return 'false' if they are 'same' and 'true' if they are 'not'.
- export const compareGrid = async (a: gridType, b: gridType) => {
-    for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
-      for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
+ export const compareGrid = async (a: gridType, b: gridType, gridSizeState: number) => {
+    for (let i = 0; i < gridSizeState; i++) {
+      for (let j = 0; j < gridSizeState; j++) {
         if (a[i][j] !== b[i][j]) {
           return true;
         }
@@ -23,7 +23,7 @@ import { gridType } from "./swipes";
   };
 
   // - add number -  add a new item to the grid
-  export const addNumber = async (newGrid: gridType) => {
+  export const addNumber = async (newGrid: gridType, gridSizeState:number) => {
     // It should pick a random location on the grid having 0 and put 2 or 4 there instead.
 
     // We can first check if the grid is full or not and are there any spots having 0.
@@ -31,8 +31,8 @@ import { gridType } from "./swipes";
     // Defining type of string array object.
     let options: { x: number; y: number }[] = []; // Array to store the spots having 0.
 
-    for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
-      for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
+    for (let i = 0; i < gridSizeState; i++) {
+      for (let j = 0; j < gridSizeState; j++) {
         if (newGrid[i][j] === 0) {
           options.push({ x: i, y: j });
         }

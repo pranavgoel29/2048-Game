@@ -30,7 +30,7 @@ enum KeyCodes {
 
 export enum GameVariablesGrid {
   //  Size of the grid
-  gridSize = 4,
+  // gridSize = 4,
   // Winning state/number of the Game
   winningNumber = 2048,
   twoAppearancePercentage = 0.7,
@@ -38,6 +38,7 @@ export enum GameVariablesGrid {
 
 const Board = (scoreSet: any) => {
   const [gameScore, setGameScore] = useState(0);
+  const [gridSizeState, setGridSizeState] = useState(4);
 
   const [showContent, setShowContent] = useState(false);
 
@@ -65,13 +66,23 @@ const Board = (scoreSet: any) => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
+  
   // Generating a 2D array of 'gridSize' will '0' as fill.
-  let arrayGrid = Array(GameVariablesGrid.gridSize)
-    .fill(0)
-    .map(() => Array(GameVariablesGrid.gridSize).fill(0));
+  let arrayGrid = Array(gridSizeState)
+  .fill(0)
+  .map(() => Array(gridSizeState).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
   const [isWon, setGameWon] = useState(false);
   const [isLost, setGameLost] = useState(false);
+  
+  useEffect(() => {
+    arrayGrid = Array(gridSizeState)
+    .fill(0)
+    .map(() => Array(gridSizeState).fill(0));
+    setGrid(arrayGrid)
+    resetGame()
+  }, [gridSizeState]);
+
 
   // Functions required
 
@@ -102,9 +113,9 @@ const Board = (scoreSet: any) => {
   const initialize = (newGrid) => {
     // newGrid = newGrid.map((row) => row.map(() => 0));
     // Clear the grid by setting all values to 0
-    addNumber(newGrid);
+    addNumber(newGrid, gridSizeState);
     // console.log("run 1");
-    addNumber(newGrid);
+    addNumber(newGrid, gridSizeState);
     // console.log("run 2");
     // console.table(newGrid);
     setGrid(newGrid);
@@ -140,16 +151,16 @@ const Board = (scoreSet: any) => {
     // Comparing Keycodes, assuming only arrows keys are pressed.
     if (e.keyCode == KeyCodes.DOWN_ARROW && !isWon) {
       // console.log("Down");
-      newGrid = await swipeDown(newGrid);
+      newGrid = await swipeDown(newGrid, gridSizeState);
       operationState(newGrid);
     } else if (e.keyCode == KeyCodes.UP_ARROW && !isWon) {
-      newGrid = await swipeUp(newGrid);
+      newGrid = await swipeUp(newGrid, gridSizeState);
       operationState(newGrid);
     } else if (e.keyCode == KeyCodes.RIGHT_ARROW && !isWon) {
-      newGrid = await swipeRight(newGrid);
+      newGrid = await swipeRight(newGrid, gridSizeState);
       operationState(newGrid);
     } else if (e.keyCode == KeyCodes.LEFT_ARROW && !isWon) {
-      newGrid = await swipeLeft(newGrid);
+      newGrid = await swipeLeft(newGrid, gridSizeState);
       operationState(newGrid);
     } else {
       // played = false;
@@ -159,11 +170,11 @@ const Board = (scoreSet: any) => {
     let pastGrid = cloneDeep(grid);
 
     // Checking if the grid changed, basically checking if elements moved.
-    let gridChanged = await compareGrid(pastGrid, newGrid);
+    let gridChanged = await compareGrid(pastGrid, newGrid, gridSizeState);
 
     if (gridChanged) {
       // console.log("Grid Changed: ");
-      await addNumber(newGrid);
+      await addNumber(newGrid, gridSizeState);
       setGrid(newGrid);
       setGameLost(isGameLost(newGrid));
     }
@@ -194,6 +205,13 @@ const Board = (scoreSet: any) => {
               onClick={() => resetGame()}
             >
               New Game
+            </button>
+            <button
+              style={{ marginTop: "20px" }}
+              className="play-button"
+              onClick={() => setGridSizeState(6)}
+            >
+              Change grid size
             </button>
           </ButtonWrapper>
 
