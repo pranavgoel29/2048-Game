@@ -90,11 +90,15 @@ Added color for different numbers.</i></b></blockquote>
 <br>
 
 <blockquote><b><i>Added game control buttons for phones view.<i></b></blockquote>
-&nbsp;
+
 
 ![Added game control buttons for phone](./screenshots/Added_button_for_phones.png)
 
 <br>
+
+<blockquote><b><i>Added a basic drop-down menu to change the size of the grid.<i></b></blockquote>
+
+![Added basic drop-down-menu to change grid size](./screenshots/Added_basic-drop-down-menu.png)
 
 
 <br>
