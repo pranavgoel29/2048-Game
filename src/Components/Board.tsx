@@ -20,6 +20,7 @@ import { BoardViewWrapper } from "../Wrappers/BoardViewWrapper";
 import Block from "./Block";
 import ControlButtonsWrapper from "../Wrappers/ControlButtonsWrapper";
 import { breakpoints } from "../styles/Breakpoints";
+import { GridDropDownWrapper } from "../Wrappers/GridDropDownWrapper";
 
 enum KeyCodes {
   UP_ARROW = 38,
@@ -60,29 +61,26 @@ const Board = (scoreSet: any) => {
     };
   }, []);
 
-
   // Effect to detect score and set it.
   useEffect(() => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
-  
   // Generating a 2D array of 'gridSize' will '0' as fill.
   let arrayGrid = Array(gridSizeState)
-  .fill(0)
-  .map(() => Array(gridSizeState).fill(0));
+    .fill(0)
+    .map(() => Array(gridSizeState).fill(0));
   const [grid, setGrid] = useState(arrayGrid);
   const [isWon, setGameWon] = useState(false);
   const [isLost, setGameLost] = useState(false);
-  
+
   useEffect(() => {
     arrayGrid = Array(gridSizeState)
-    .fill(0)
-    .map(() => Array(gridSizeState).fill(0));
-    setGrid(arrayGrid)
-    resetGame()
+      .fill(0)
+      .map(() => Array(gridSizeState).fill(0));
+    setGrid(arrayGrid);
+    resetGame();
   }, [gridSizeState]);
-
 
   // Functions required
 
@@ -124,7 +122,7 @@ const Board = (scoreSet: any) => {
   // Function to check all the states of the game, and updating the score as well.
   const operationState = (newGrid) => {
     setGameWon(isGameWon(newGrid));
-   
+
     updateScore();
   };
 
@@ -188,6 +186,13 @@ const Board = (scoreSet: any) => {
     initialize(cloneDeep(grid));
   }, []);
 
+  const [selectedValue, setSelectedValue] = useState(4);
+
+  const changeGridSize = (e: any) => {
+    setSelectedValue(parseInt(e.target.value));
+    setGridSizeState(parseInt(e.target.value));
+  };
+
   // Listening to the 'keyup' event, using keyup instead of keydown as it will reduce the accidental clicks. And looping of clicks as well if someone holds down the key.
   useEvent("keyup", keyPressed);
   // Scroll prevention
@@ -206,14 +211,28 @@ const Board = (scoreSet: any) => {
             >
               New Game
             </button>
-            <button
+            {/* <button
               style={{ marginTop: "20px" }}
               className="play-button"
               onClick={() => setGridSizeState(6)}
             >
               Change grid size
-            </button>
+            </button> */}
           </ButtonWrapper>
+
+          <GridDropDownWrapper>
+            <select
+              name="Grid Size"
+              value={selectedValue}
+              onChange={changeGridSize}
+              className="dropdown-select"
+            >
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </GridDropDownWrapper>
 
           <BoardWrapper>
             {grid.map((singleRow, index) => {
