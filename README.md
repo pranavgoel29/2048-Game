@@ -165,7 +165,7 @@ This is in the works.
 
 - [x] Making the size of the grid dynamic. (Take input from the player)
     
-    - <b>Formula -></b> 2 <sup> (Grid Size/2) + 3</sup>
+    - <b>Formula -></b> 2 <sup> ((Grid Size * Grid Size)/2) + 3</sup>
 
 
 <br>
