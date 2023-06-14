@@ -33,7 +33,7 @@ export enum GameVariablesGrid {
   //  Size of the grid
   // gridSize = 4,
   // Winning state/number of the Game
-  winningNumber = 2048,
+  // winningNumber = 2048,
   twoAppearancePercentage = 0.7,
 }
 
@@ -42,6 +42,19 @@ const Board = (scoreSet: any) => {
   const [gridSizeState, setGridSizeState] = useState(4);
 
   const [showContent, setShowContent] = useState(false);
+
+  // Generating a 2D array of 'gridSize' will '0' as fill.
+  let arrayGrid = Array(gridSizeState)
+    .fill(0)
+    .map(() => Array(gridSizeState).fill(0));
+  const [grid, setGrid] = useState(arrayGrid);
+  const [isWon, setGameWon] = useState(false);
+  const [isLost, setGameLost] = useState(false);
+
+  const [selectedValue, setSelectedValue] = useState(4);
+  const [winningNumberState, setWinningNumberState] = useState(0);
+
+  let localscore = 0;
 
   // Effect to detect the screen size change and show particular content accordingly
   useEffect(() => {
@@ -66,26 +79,22 @@ const Board = (scoreSet: any) => {
     scoreSet.score(gameScore);
   }, [gameScore]);
 
-  // Generating a 2D array of 'gridSize' will '0' as fill.
-  let arrayGrid = Array(gridSizeState)
-    .fill(0)
-    .map(() => Array(gridSizeState).fill(0));
-  const [grid, setGrid] = useState(arrayGrid);
-  const [isWon, setGameWon] = useState(false);
-  const [isLost, setGameLost] = useState(false);
-
   useEffect(() => {
     arrayGrid = Array(gridSizeState)
       .fill(0)
       .map(() => Array(gridSizeState).fill(0));
     setGrid(arrayGrid);
+
+    // Have to optimize the Handling of the winning state, as to minimize the computationn of it.
+    setWinningNumberState(Math.pow(2, (gridSizeState * gridSizeState) / 2 + 3));
+
     resetGame();
   }, [gridSizeState]);
 
   // Functions required
 
   // Function to update the Score state.
-  let localscore = 0;
+
   const updateScore = async () => {
     localscore = await score();
     setGameScore(localscore);
@@ -121,7 +130,7 @@ const Board = (scoreSet: any) => {
 
   // Function to check all the states of the game, and updating the score as well.
   const operationState = (newGrid) => {
-    setGameWon(isGameWon(newGrid));
+    setGameWon(isGameWon(newGrid, winningNumberState));
 
     updateScore();
   };
@@ -186,8 +195,6 @@ const Board = (scoreSet: any) => {
     initialize(cloneDeep(grid));
   }, []);
 
-  const [selectedValue, setSelectedValue] = useState(4);
-
   const changeGridSize = (e: any) => {
     setSelectedValue(parseInt(e.target.value));
     setGridSizeState(parseInt(e.target.value));
@@ -203,6 +210,7 @@ const Board = (scoreSet: any) => {
       {!isWon ? (
         <>
           <p className="gameLost">{isLost ? "Game Lost !" : ""}</p>
+          <p className="gameWinningNumber">{isLost ? "" : `Winning Number: ${winningNumberState}`}</p>
           <ButtonWrapper>
             <button
               style={{ marginTop: "20px" }}
@@ -228,7 +236,6 @@ const Board = (scoreSet: any) => {
               className="dropdown-select"
             >
               <option value="4">4</option>
-              <option value="5">5</option>
               <option value="6">6</option>
               <option value="8">8</option>
             </select>

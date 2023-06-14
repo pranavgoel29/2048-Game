@@ -104,6 +104,17 @@ Added color for different numbers.</i></b></blockquote>
 <br>
 
 
+
+<blockquote><b><i>Incorporated the winning number of the game according to the size of the grid.<i></b></blockquote>
+
+<p>It is a very basic implementation for now, will have to update it later to manage the updation of thing throughout the app as a whole to bring down the overall complexity.</p>
+
+![Added winning number on the screen](./screenshots/Added_basic-winning-number-state.png)
+
+
+<br>
+
+
 ## Prerequisites
 
 - Node.js (v14 or later)
@@ -144,14 +155,18 @@ This command will start the Vite development server and compile your React app.
 
 
 ## Future Goals
-- Add Controls for mobile. (Touch swipes)
-- Add animations for the moves.
-- Game lost and won status to show on the grid with translucent effect.
-- Making the size of the grid dynamic. (Take input from the player)
+- [ ] Add Controls for mobile. (Touch swipes)
+- [ ] Add animations for the moves.
+- [ ] Game lost and won status to show on the grid with translucent effect.
+- [ ] Track moves taken by people to win a particular game. (This is just a thought)
+
+
+This is in the works.
+
+- [x] Making the size of the grid dynamic. (Take input from the player)
     
     - <b>Formula -></b> 2 <sup> (Grid Size/2) + 3</sup>
 
-- Track moves taken by people to win a particular game. (This is just a thought)
 
 <br>
 

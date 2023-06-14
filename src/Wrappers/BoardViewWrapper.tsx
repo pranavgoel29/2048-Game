@@ -10,10 +10,20 @@ export const BoardViewWrapper = styled.div`
     justify-content: center;
     font-family: "Montserrat", sans-serif;
     margin-top: 20px;
-    
+
     font-weight: 700;
     font-size: 24px;
     color: ${theme.gameLostColor};
+  }
+
+  .gameWinningNumber {
+    padding: 10px;
+    background-color: ${theme.backgroundAccentColor};
+    border-radius: 12px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: ${theme.secondaryTextColor};
   }
 
   .gameInstructions {

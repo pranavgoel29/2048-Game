@@ -10,10 +10,12 @@ const filterZero = async (row: number[]) => {
 };
 
 // Function to check if Game is won. Just check if the array has winning variable value and if it does return true.
-export const isGameWon = (grid: gridType) => {
+
+export const isGameWon = (grid: gridType, winningNumber: number) => {
   for (let c = 0; c < grid.length; c++) {
     for (let r = 0; r < grid.length; r++) {
-      if (grid[c][r] === GameVariablesGrid.winningNumber) {
+      // if (grid[c][r] === GameVariablesGrid.winningNumber) {
+      if (grid[c][r] === winningNumber) {
         return true;
       }
     }
@@ -23,7 +25,7 @@ export const isGameWon = (grid: gridType) => {
 
 // Check if Game lost
 export const isGameLost = (grid: gridType) => {
-  console.log('Game lost grid size',grid.length)
+  console.log("Game lost grid size", grid.length);
   for (let c = 0; c < grid.length; c++) {
     for (let r = 0; r < grid.length; r++) {
       if (grid[c][r] === 0) {
