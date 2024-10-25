@@ -2,7 +2,7 @@ import { GameVariablesGrid } from "../Components/Board";
 import { gridType } from "./swipes";
 
 // Function to compare 2 grids and return 'false' if they are 'same' and 'true' if they are 'not'.
- export const compareGrid = async (a: gridType, b: gridType) => {
+ export const compareGrid = (a: gridType, b: gridType) => {
     for (let i = 0; i < GameVariablesGrid.gridSize; i++) {
       for (let j = 0; j < GameVariablesGrid.gridSize; j++) {
         if (a[i][j] !== b[i][j]) {
