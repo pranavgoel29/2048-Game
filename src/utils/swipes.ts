@@ -1,6 +1,6 @@
 import { GameVariablesGrid } from "../Components/Board";
 
-let gameScore: number = 0;
+let gameScore = 0;
 export type gridType = number[][];
 
 // Function to remove all the zeroes from the given row.
